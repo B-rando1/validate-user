@@ -10,7 +10,7 @@
  * Update URI: localhost:8888/wordpress
  * Requires at least: 5.9.0
  * Tested up to: 6.2.2
- * Requires PHP: 8.2
+ * Requires PHP: 8.1
  * Text Domain: /languages
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
