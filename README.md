@@ -20,29 +20,32 @@ All validated users are given the role 'validated-user' (these have the same per
 
 ## Developer Resources
 ### Filter Hooks
-#### validate-user-admin-email-message( string $message ): string
+#### validate-user-admin-email-message( string $message, int $post_id ): string
 Allows developers to change the content of the admin message for a new application.
 
 Parameters:
 $message: string - the message body as created by the plugin.
+$post_id: int - the id of the custom post type containing the information for the new user application.
 
 Returns:
 $message: string - the updated message body.
 
-#### validate-user-confirmation-email-message( string $message ): string
+#### validate-user-confirmation-email-message( string $message, int $post_id ): string
 Allows developers to change the content of the message for a confirmed application.
 
 Parameters:
 $message: string - the message body as created by the plugin.
+$post_id: int - the id of the custom post type containing the information for the new user application.
 
 Returns:
 $message: string - the updated message body.
 
-#### validate-user-rejection-email-message( string $message ): string
+#### validate-user-rejection-email-message( string $message, int $post_id ): string
 Allows developers to change the content of the message for a rejected application.
 
 Parameters:
 $message: string - the message body as created by the plugin.
+$post_id: int - the id of the custom post type containing the information for the new user application.
 
 Returns:
 $message: string - the updated message body.
