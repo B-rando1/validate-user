@@ -17,3 +17,44 @@ When someone fills out the form, a new application will be created.  All applica
 
 ## Validated Users
 All validated users are given the role 'validated-user' (these have the same permissions as the role 'subscriber').  You can view them in the 'Users' admin screen.  When you view a validated user, any other information they entered into the fom they submitted (other than username, email, and message) will appear at the bottom of their information screen.  When you edit them, you will have the option to add information at the bottom.
+
+## Developer Resources
+### Filter Hooks
+#### validate-user-admin-email-message( string $message, int $post_id ): string
+Allows developers to change the content of the admin message for a new application.
+
+Parameters:
+
+- $message: string - the message body as created by the plugin.
+
+- $post_id: int - the id of the custom post type containing the information for the new user application.
+
+Returns:
+
+- $message: string - the updated message body.
+
+#### validate-user-confirmation-email-message( string $message, int $post_id ): string
+Allows developers to change the content of the message for a confirmed application.
+
+Parameters:
+
+- $message: string - the message body as created by the plugin.
+
+- $post_id: int - the id of the custom post type containing the information for the new user application.
+
+Returns:
+
+- $message: string - the updated message body.
+
+#### validate-user-rejection-email-message( string $message, int $post_id ): string
+Allows developers to change the content of the message for a rejected application.
+
+Parameters:
+
+- $message: string - the message body as created by the plugin.
+
+- $post_id: int - the id of the custom post type containing the information for the new user application.
+
+Returns:
+
+- $message: string - the updated message body.
