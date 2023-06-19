@@ -194,6 +194,8 @@ if ( ! class_exists( 'ValidateUserApplications' ) ) {
 				$message = ValidateUserEmailUtilities::insertClientMacros( $message, $macros );
 				$subject = ValidateUserEmailUtilities::insertClientMacros( $subject, $macros );
 
+				$message = apply_filters( 'validate-user-confirmation-email-message', $message, $post_id );
+
 				$sent = wp_mail( $email, $subject, $message, $headers );
 				if ( ! $sent ) {
 					$response['errors'][] = esc_html__( 'Failed to send email', '/languages' );
@@ -269,6 +271,8 @@ if ( ! class_exists( 'ValidateUserApplications' ) ) {
 
 				$message = ValidateUserEmailUtilities::insertClientMacros( $message, $macros );
 				$subject = ValidateUserEmailUtilities::insertClientMacros( $subject, $macros );
+
+				$message = apply_filters( 'validate-user-rejection-email-message', $message, $post_id );
 
 				$sent = wp_mail( $email, $subject, $message, $headers );
 				if ( ! $sent ) {

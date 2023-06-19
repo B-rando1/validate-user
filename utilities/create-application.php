@@ -180,6 +180,8 @@ if ( ! class_exists( 'ValidateUserCreateApplication' ) ) {
 				$macros
 			);
 
+			$message  = apply_filters( 'validate-user-admin-message', $message, $post_id );
+
 			return wp_mail( $to_email, $subject, $message, $headers );
 
 		}
