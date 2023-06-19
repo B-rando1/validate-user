@@ -1,0 +1,25 @@
+.validate-user textarea {
+    resize: vertical;
+}
+
+.validate-user textarea.auto-resize {
+    resize: none;
+}
+
+.validate-user .form-success {
+    background: green;
+    color: white;
+}
+
+.validate-user .form-error {
+    background: red;
+    color: white;
+}
+
+.wp-admin .validate-user input:not([type="Submit"], [type="checkbox"]), .wp-admin .validate-user textarea {
+    width: 100%;
+}
+
+.wp-admin .validate-user h2 {
+    text-decoration: underline;
+}
