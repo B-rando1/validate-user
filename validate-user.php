@@ -48,6 +48,7 @@ if ( ! class_exists( 'ValidateUser' ) ) {
 
 			require_once( VALIDATE_USER_PATH . 'public/shortcode.php' );
 			require_once( VALIDATE_USER_PATH . 'public/gutenberg-block.php' );
+			require_once( VALIDATE_USER_PATH . 'public/classic-widget.php' );
 			require_once( VALIDATE_USER_PATH . 'public/recaptcha.php' );
 
 			require_once( VALIDATE_USER_PATH . 'public/default-form-handler.php' );

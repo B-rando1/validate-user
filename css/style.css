@@ -1,3 +1,7 @@
+.validate-user, .validate-user * {
+    max-width: 100%;
+}
+
 .validate-user textarea {
     resize: vertical;
 }
