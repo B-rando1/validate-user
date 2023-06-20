@@ -511,7 +511,8 @@ if ( ! class_exists( 'ValidateUserSettings' ) ) {
                 <h1><?php esc_html_e( 'Validate User', '/languages' ); ?></h1>
                 <h2><?php esc_html_e( 'Documentation', '/languages' ); ?></h2>
                 <div>
-                    <p><?php esc_html_e( 'View the documentation', '/languages' ); ?> <a href="https://github.com/B-rando1/validate-user" target="_blank"><?php esc_html_e( 'here', '/languages' ); ?>.</a></p>
+                    <p><?php esc_html_e( 'View the documentation on GitHub', '/languages' ); ?> <a href="https://github.com/B-rando1/validate-user#readme" target="_blank"><?php esc_html_e( 'here', '/languages' ); ?>.</a></p>
+                    <p><?php esc_html_e( 'If the GitHub link does not work for you, view the documentation', '/languages' ); ?> <a href="<?php echo VALIDATE_USER_URL . 'README.md'; ?>" target="_blank"><?php esc_html_e( 'here', '/languages' ); ?>.</a></p>
                 </div>
 
                 <form action="options.php" method="post">
