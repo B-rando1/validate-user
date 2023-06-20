@@ -10,6 +10,7 @@ $username = $post_meta['username'][0];
 unset( $post_meta['username'] );
 $email = $post_meta['email'][0];
 unset( $post_meta['email'] );
+
 if ( isset ( $post_meta['message'] ) ) {
     $message = $post_meta['message'][0];
     unset( $post_meta['message'] );

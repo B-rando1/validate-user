@@ -29,10 +29,9 @@ if ( ! class_exists( 'ValidateUserEditor' ) ) {
 
 			add_action( 'show_user_profile', [ $instance, 'displayUserMeta' ] );
 			add_action( 'edit_user_profile', [ $instance, 'displayUserMeta' ] );
-			add_action( 'user_new_form', [ $instance, 'createUserBusiness' ] );
 
-			add_action( 'personal_options_update', [ $instance, 'saveUserBusiness' ] );
-			add_action( 'edit_user_profile_update', [ $instance, 'saveUserBusiness' ] );
+			add_action( 'personal_options_update', [ $instance, 'saveUserMeta' ] );
+			add_action( 'edit_user_profile_update', [ $instance, 'saveUserMeta' ] );
 
 		}
 
@@ -44,14 +43,7 @@ if ( ! class_exists( 'ValidateUserEditor' ) ) {
 
 		}
 
-		public function createUserBusiness( $type ): void {
-
-			$business = '';
-			include( VALIDATE_USER_PATH . 'templates/user-editor.php' );
-
-		}
-
-		public function saveUserBusiness( $user_id ): void {
+		public function saveUserMeta( $user_id ): void {
 
 			if ( ! current_user_can( 'edit_user', $user_id ) ) {
 				return;
