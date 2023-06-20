@@ -78,6 +78,14 @@ if ( ! class_exists( 'ValidateUserSettings' ) ) {
             $cf7Ids = wp_list_pluck( $cf7Forms, 'post_title', 'ID' );
 
 	        $settings = [
+                [
+                    'name' => 'validate-user-form-title',
+                    'display_name' => esc_html__( 'Form Title', '/languages' ),
+                    'type' => 'text',
+                    'sanitize_callback' => 'sanitize_text_field',
+                    'default' => esc_html__( 'Apply to Be a User', '/languages' ),
+                    'after_form' => esc_html__( 'Leave empty for no title.' )
+                ],
 		        [
 			        'name' => 'validate-user-form-type',
 			        'display_name' => esc_html__( 'Form Type', '/languages' ),
@@ -501,13 +509,9 @@ if ( ! class_exists( 'ValidateUserSettings' ) ) {
 
             <div class="wrap validate-user">
                 <h1><?php esc_html_e( 'Validate User', '/languages' ); ?></h1>
-                <h2><?php esc_html_e( 'Adding the Form to a Page', '/languages' ); ?>:</h2>
+                <h2><?php esc_html_e( 'Documentation', '/languages' ); ?></h2>
                 <div>
-                    <p><?php esc_html_e( 'To add a form for new user applications, you have two options', '/languages' ); ?>:</p>
-                    <ol>
-                        <li><?php esc_html_e( "If you are using the Gutenberg block editor, you can simply add the 'New User Form' block into the page.", '/languages' ); ?></li>
-                        <li><?php esc_html_e( "Otherwise, you can add the shortcode [validate_user_form] into the page.", '/languages' ); ?></li>
-                    </ol>
+                    <?php esc_html_e( 'View the documentation', '/languages' ); ?> <a href="https://github.com/B-rando1/validate-user" target="_blank"><?php esc_html_e( 'here', '/languages' ); ?>.</a></p>
                 </div>
 
                 <form action="options.php" method="post">

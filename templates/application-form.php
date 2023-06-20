@@ -8,6 +8,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <div class="validate-user">
 
+    <?php
+    $form_title = esc_html( get_option( 'validate-user-form-title', esc_html__( 'Apply to Be a User', '/languages' ) ) );
+    if ( ! empty( trim( $form_title ) ) ) {
+        echo '<h2>' . $form_title . '</h2>';
+    }
+    ?>
+
     <?php if ( 'default' === get_option( 'validate-user-form-type', 'default' ) ) { ?>
 
         <div id="form-success" class="form-success"></div>
