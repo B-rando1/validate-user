@@ -1,5 +1,5 @@
 # Validate User
-Validate User is a WordPress plugin for facilitating new user applications when admin validation is required. I made it to grow my WordPress plugin development skills. Note that while I have done my best to make it secure, it has not been used on a live site or assessed by professionals, so I would not recommend using it on a live site.
+Validate User is a WordPress plugin for facilitating new user applications when admin validation is required. I made it to grow my WordPress plugin development skills. Note that while I have done my best to make it secure, it has not been used on a live site or assessed by professionals, so I cannot recommend using it on a live site.
 
 ## How It Works
 With Validate User, you can put a New User Form anywhere in the site.  When someone fills it out, an application will appear in the backend of the site.  Any admins will then be able to view the application and choose whether to confirm or reject the user's application.  Validate User also has several flexible options for sending emails at various stages of this process.
