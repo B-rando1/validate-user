@@ -52,11 +52,6 @@ if ( ! class_exists( 'ValidateUserGutenbergBlock' ) ) {
 				$public_key = '';
 			}
 
-			wp_localize_script( $script_handle, 'args',
-				[ 'wp_nonce' => wp_create_nonce( 'wp_rest' ),
-				  'recaptcha_public_key' => $public_key]
-			);
-
 			register_block_type( 'validate-user/gutenberg-block', [
 				'editor_script' => $script_handle,
 				'render_callback' => [ $this, 'blockHTML' ]
