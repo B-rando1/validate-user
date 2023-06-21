@@ -2,7 +2,7 @@
 
 /**
  * Plugin Name: Validate User
- * Description: A plugin for facilitating new user applications when admin validation is required.  I made it to grow my WordPress plugin development skills.  Note that while I have done my best to make it secure, it has not been used on a live site or assessed by professionals, so I cannot recommend using it on a live site.
+ * Description: A WordPress plugin for facilitating new user applications when admin validation is required. I made it to grow my WordPress plugin development skills. Note that I don't currently have plans to maintain it, so use it at your own risk.
  * Plugin URI: https://github.com/B-rando1/validate-user
  * Author: Brandon Bosman
  * Author URI: https://github.com/B-rando1
