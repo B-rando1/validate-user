@@ -1,7 +1,7 @@
 <?php
 
 if ( ! defined( 'ABSPATH' ) ) {
-	die( esc_html__( 'Access Denied', '/languages' ) );
+	die( esc_html__( 'Access Denied', 'validate-user' ) );
 }
 
 if ( ! class_exists( 'ValidateUserEncryption' ) ) {

@@ -29,8 +29,8 @@ jQuery(document).ready( function($) {
                     window.location.replace(response.url);
                 }
             },
-            error : function(response) {
-                $('#error-messages').html( __( 'Ajax Error', '/languages' ) );
+            error : function() {
+                $('#error-messages').html( __( 'Ajax Error', 'validate-user' ) );
             }
         });
 
@@ -64,8 +64,8 @@ jQuery(document).ready( function($) {
                 }
 
             },
-            error : function(response) {
-                $('#error-messages').html( __( 'Ajax Error', '/languages' ) );
+            error : function() {
+                $('#error-messages').html( __( 'Ajax Error', 'validate-user' ) );
             }
         });
 

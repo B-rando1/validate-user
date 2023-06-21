@@ -1,3 +1,3 @@
 <?php
 
-die( esc_html__( 'Access Denied', '/languages' ) );
+die( esc_html__( 'Access Denied', 'validate-user' ) );

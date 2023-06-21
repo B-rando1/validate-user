@@ -1,7 +1,7 @@
 <?php
 
 if ( ! defined( 'ABSPATH' ) ) {
-	die( esc_html__( 'Access Denied', '/languages' ) );
+	die( esc_html__( 'Access Denied', 'validate-user' ) );
 }
 
 if ( ! class_exists( 'ValidateUserClassicWidget' ) ) {
@@ -13,7 +13,7 @@ if ( ! class_exists( 'ValidateUserClassicWidget' ) ) {
 			$widget_ops = [
 				'classname' => 'validate-user-classic-widget'
 			];
-			parent::__construct( 'validate-user-classic-widget', esc_html__( 'New User Form', '/languages' ), $widget_ops );
+			parent::__construct( 'validate-user-classic-widget', esc_html__( 'New User Form', 'validate-user' ), $widget_ops );
 
 		}
 

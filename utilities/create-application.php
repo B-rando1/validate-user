@@ -1,7 +1,7 @@
 <?php
 
 if ( ! defined( 'ABSPATH' ) ) {
-	die( esc_html__( 'Access Denied', '/languages' ) );
+	die( esc_html__( 'Access Denied', 'validate-user' ) );
 }
 
 if ( ! class_exists( 'ValidateUserCreateApplication' ) ) {
@@ -73,13 +73,13 @@ if ( ! class_exists( 'ValidateUserCreateApplication' ) ) {
 
 				$sent = $this->sendAdminEmail( $username, $email, $new_post, $form_message ?? null );
 				if ( ! $sent ) {
-					return new WP_Rest_Response( esc_html__( 'Failed to send admin message', '/languages' ), 500 );
+					return new WP_Rest_Response( esc_html__( 'Failed to send admin message', 'validate-user' ), 500 );
 				}
 
 			}
 
 			// Send a success message
-			return new WP_REST_Response( esc_html__( 'Your request has been successfully sent', '/languages' ), 200 );
+			return new WP_REST_Response( esc_html__( 'Your request has been successfully sent', 'validate-user' ), 200 );
 			
 		}
 
@@ -87,18 +87,18 @@ if ( ! class_exists( 'ValidateUserCreateApplication' ) ) {
 
 			// Check for empty username or email
 			if ( empty( trim( $username ) ) ) {
-				return new WP_REST_Response( esc_html__( 'Username field must be filled out', '/languages' ), 422 );
+				return new WP_REST_Response( esc_html__( 'Username field must be filled out', 'validate-user' ), 422 );
 			}
 			if ( empty( trim( $email ) ) ) {
-				return new WP_REST_Response( esc_html__( 'Email field must be filled out', '/languages' ), 422 );
+				return new WP_REST_Response( esc_html__( 'Email field must be filled out', 'validate-user' ), 422 );
 			}
 
 			// Check for collisions with existing users:
 			if ( false !== username_exists( $username ) ) {
-				return new WP_REST_Response( esc_html__( 'That username is already taken', '/languages' ), 422 );
+				return new WP_REST_Response( esc_html__( 'That username is already taken', 'validate-user' ), 422 );
 			}
 			if ( false !== email_exists( $email ) ) {
-				return new WP_REST_Response( esc_html__( 'There is already a user with that email', '/languages' ), 422 );
+				return new WP_REST_Response( esc_html__( 'There is already a user with that email', 'validate-user' ), 422 );
 			}
 
 			// Check for collisions with existing applications:
@@ -111,10 +111,10 @@ if ( ! class_exists( 'ValidateUserCreateApplication' ) ) {
 			foreach ( $application_ids as $id ) {
 
 				if ( strtolower( get_post_meta( $id, 'username', true ) ) === strtolower( $username ) ) {
-					return new WP_REST_Response( esc_html__( 'That username is already taken', '/languages' ), 422 );
+					return new WP_REST_Response( esc_html__( 'That username is already taken', 'validate-user' ), 422 );
 				}
 				if ( strtolower( get_post_meta( $id, 'email', true ) ) === strtolower( $email ) ) {
-					return new WP_REST_Response( esc_html__( 'There is already an application with that email', '/languages' ), 422 );
+					return new WP_REST_Response( esc_html__( 'There is already an application with that email', 'validate-user' ), 422 );
 				}
 
 			}

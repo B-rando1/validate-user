@@ -1,7 +1,7 @@
 <?php
 
 if ( ! defined( 'ABSPATH' ) ) {
-	die( esc_html__( 'Access Denied', '/languages' ) );
+	die( esc_html__( 'Access Denied', 'validate-user' ) );
 }
 
 if ( ! class_exists( 'ValidateUserCF7FormHandler' ) ) {
@@ -17,6 +17,11 @@ if ( ! class_exists( 'ValidateUserCF7FormHandler' ) ) {
 		private function __construct() {
 		}
 
+		/**
+		 * Gets the singleton instance
+		 *
+		 * @return ValidateUserCF7FormHandler The singleton instance
+		 */
 		public static function getInstance(): ValidateUserCF7FormHandler {
 
 			if ( null === self::$instance ) {

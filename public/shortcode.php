@@ -1,7 +1,7 @@
 <?php
 
 if ( ! defined( 'ABSPATH' ) ) {
-	die( esc_html__( 'Access Denied', '/languages' ) );
+	die( esc_html__( 'Access Denied', 'validate-user' ) );
 }
 
 if ( ! class_exists( 'ValidateUserShortCode' ) ) {
@@ -15,6 +15,11 @@ if ( ! class_exists( 'ValidateUserShortCode' ) ) {
 		private function __construct() {
 		}
 
+		/**
+		 * Gets the singleton instance
+		 *
+		 * @return ValidateUserShortcode The singleton instance
+		 */
 		public static function getInstance(): ValidateUserShortcode {
 
 			if ( null === self::$instance ) {

@@ -1,7 +1,7 @@
 <?php
 
 if ( ! defined( 'ABSPATH' ) ) {
-	die( esc_html__( 'Access Denied', '/languages' ) );
+	die( esc_html__( 'Access Denied', 'validate-user' ) );
 }
 
 if ( ! class_exists( 'ValidateUserSettings' ) ) {
@@ -15,6 +15,11 @@ if ( ! class_exists( 'ValidateUserSettings' ) ) {
 	    private function __construct() {
 	    }
 
+	    /**
+	     * Gets the singleton instance
+	     *
+	     * @return ValidateUserSettings The singleton instance
+	     */
 	    public static function getInstance(): ValidateUserSettings {
 
 		    if ( null === self::$instance ) {
@@ -66,7 +71,7 @@ if ( ! class_exists( 'ValidateUserSettings' ) ) {
 	        // Add settings section
 	        add_settings_section(
 		        $settings_section,
-		        esc_html__( 'Form Settings', '/languages' ),
+		        esc_html__( 'Form Settings', 'validate-user' ),
 		        '',
 		        $settings_group
 	        );
@@ -82,15 +87,15 @@ if ( ! class_exists( 'ValidateUserSettings' ) ) {
 	        $settings = [
                 [
                     'name' => 'validate-user-form-title',
-                    'display_name' => esc_html__( 'Form Title', '/languages' ),
+                    'display_name' => esc_html__( 'Form Title', 'validate-user' ),
                     'type' => 'text',
                     'sanitize_callback' => 'sanitize_text_field',
-                    'default' => esc_html__( 'Apply to Be a User', '/languages' ),
+                    'default' => esc_html__( 'Apply to Be a User', 'validate-user' ),
                     'after_form' => esc_html__( 'Leave empty for no title.' )
                 ],
 		        [
 			        'name' => 'validate-user-form-type',
-			        'display_name' => esc_html__( 'Form Type', '/languages' ),
+			        'display_name' => esc_html__( 'Form Type', 'validate-user' ),
 			        'type' => 'select',
 			        'sanitize_callback' => 'sanitize_text_field',
 			        'default' => 'default',
@@ -101,7 +106,7 @@ if ( ! class_exists( 'ValidateUserSettings' ) ) {
 		        ],
                 [
                     'name' => 'validate-user-cf7-form-id',
-                    'display_name' => esc_html__( 'Contact Form 7 Form', '/languages' ),
+                    'display_name' => esc_html__( 'Contact Form 7 Form', 'validate-user' ),
                     'type' => 'select',
                     'sanitize_callback' => 'sanitize_text_field',
                     'default' => null,
@@ -141,7 +146,7 @@ if ( ! class_exists( 'ValidateUserSettings' ) ) {
             // Add settings section
             add_settings_section(
                 $settings_section,
-                esc_html__( 'Email Settings - New Application Message', '/languages' ),
+                esc_html__( 'Email Settings - New Application Message', 'validate-user' ),
                 '',
                 $settings_group
             );
@@ -150,48 +155,48 @@ if ( ! class_exists( 'ValidateUserSettings' ) ) {
             $settings = [
                 [
                     'name' => 'validate-user-admin-email-send',
-                    'display_name' => esc_html__( 'Send Admin Email', '/languages' ),
+                    'display_name' => esc_html__( 'Send Admin Email', 'validate-user' ),
                     'type' => 'checkbox',
                     'sanitize_callback' => 'sanitize_text_field',
                     'default' => 1
                 ],
                 [
                     'name' => 'validate-user-admin-email-from-name',
-                    'display_name' => esc_html__( 'From Name', '/languages' ),
+                    'display_name' => esc_html__( 'From Name', 'validate-user' ),
                     'type' => 'text',
                     'sanitize_callback' => 'sanitize_text_field',
                     'default' => get_bloginfo( 'name' )
                 ],
                 [
                     'name' => 'validate-user-admin-email-from-address',
-                    'display_name' => esc_html__( 'From Address', '/languages' ),
+                    'display_name' => esc_html__( 'From Address', 'validate-user' ),
                     'type' => 'email',
                     'sanitize_callback' => 'sanitize_email',
                     'default' => get_bloginfo( 'admin_email' )
                 ],
                 [
                     'name' => 'validate-user-admin-email-to-name',
-                    'display_name' => esc_html__( 'To Name', '/languages' ),
+                    'display_name' => esc_html__( 'To Name', 'validate-user' ),
                     'type' => 'text',
                     'sanitize_callback' => 'sanitize_text_field',
                     'default' => 'Site Admin'
                 ],
                 [
                     'name' => 'validate-user-admin-email-to-address',
-                    'display_name' => esc_html__( 'To Address', '/languages' ),
+                    'display_name' => esc_html__( 'To Address', 'validate-user' ),
                     'type' => 'email',
                     'sanitize_callback' => 'sanitize_email',
                     'default' => get_bloginfo( 'admin_email' )
                 ],
                 [
                     'name' => 'validate-user-admin-email-message',
-                    'display_name' => esc_html__( 'Message Template', '/languages' ),
+                    'display_name' => esc_html__( 'Message Template', 'validate-user' ),
                     'type' => 'textarea',
                     'sanitize_callback' => [$this, 'validateEmailTemplate'],
                     'default' => ValidateUserEmailTemplates::adminEmailTemplate(),
-                    'after_form' => esc_html__( 'Default macros:', '/languages' ) .
+                    'after_form' => esc_html__( 'Default macros:', 'validate-user' ) .
                                     ' {from_name}, {from_address}, {to_name}, {to_address}, {site_name}, {site_url}, {username}, {email}, {application_link}, {other_info}.  ' .
-                                    esc_html__( 'Other macros can be used based on form fields', '/languages' ) . '.'
+                                    esc_html__( 'Other macros can be used based on form fields', 'validate-user' ) . '.'
                 ]
             ];
 
@@ -243,21 +248,21 @@ if ( ! class_exists( 'ValidateUserSettings' ) ) {
                 ],
                 [
                     'name' => 'validate-user-client-email-from-address',
-                    'display_name' => esc_html__( 'From Address', '/languages' ),
+                    'display_name' => esc_html__( 'From Address', 'validate-user' ),
                     'type' => 'email',
                     'sanitize_callback' => 'sanitize_email',
                     'default' => get_bloginfo( 'admin_email' )
                 ],
                 [
                     'name' => 'validate-user-confirmation-email-subject',
-                    'display_name' => esc_html__( 'User Confirmed - Subject Template', '/languages' ),
+                    'display_name' => esc_html__( 'User Confirmed - Subject Template', 'validate-user' ),
                     'type' => 'text',
                     'sanitize_callback' => 'sanitize_text_field',
                     'default' => 'Your User Application Has Been Approved'
                 ],
                 [
                     'name' => 'validate-user-confirmation-email-message',
-                    'display_name' => esc_html__( 'User Confirmed - Message Template', '/languages' ),
+                    'display_name' => esc_html__( 'User Confirmed - Message Template', 'validate-user' ),
                     'type' => 'textarea',
                     'sanitize_callback' => function ( $input ) {
                         $input = $this->validateEmailTemplate( $input );
@@ -267,34 +272,34 @@ if ( ! class_exists( 'ValidateUserSettings' ) ) {
                         return $input;
                     },
                     'default' => ValidateUserEmailTemplates::confirmationEmailTemplate(),
-                    'after_form' => esc_html__( 'Default macros:', '/languages' ) .
+                    'after_form' => esc_html__( 'Default macros:', 'validate-user' ) .
                                     ' {from_name}, {from_address}, {site_name}, {site_url}, {username}, {email}, {set_password_link}.  ' .
-                                    esc_html__( 'Other macros can be used based on form fields', '/languages' ) . '.' .
-                                    "<br>({set_password_link} " . esc_html__( 'must appear in the email)', '/languages' )
+                                    esc_html__( 'Other macros can be used based on form fields', 'validate-user' ) . '.' .
+                                    "<br>({set_password_link} " . esc_html__( 'must appear in the email)', 'validate-user' )
                 ],
                 [
                     'name' => 'validate-user-rejection-email-send',
-                    'display_name' => esc_html__( 'Send Rejection Email', '/languages' ),
+                    'display_name' => esc_html__( 'Send Rejection Email', 'validate-user' ),
                     'type' => 'checkbox',
                     'sanitize_callback' => 'sanitize_text_field',
                     'default' => 0
                 ],
                 [
                     'name' => 'validate-user-rejection-email-subject',
-                    'display_name' => esc_html__( 'User Rejected - Subject Template', '/languages' ),
+                    'display_name' => esc_html__( 'User Rejected - Subject Template', 'validate-user' ),
                     'type' => 'text',
                     'sanitize_callback' => 'sanitize_text_field',
                     'default' => 'Your User Application Has Been Denied'
                 ],
                 [
                     'name' => 'validate-user-rejection-email-message',
-                    'display_name' => esc_html__( 'User Rejected - Message Template', '/languages' ),
+                    'display_name' => esc_html__( 'User Rejected - Message Template', 'validate-user' ),
                     'type' => 'textarea',
                     'sanitize_callback' => [$this, 'validateEmailTemplate'],
                     'default' => ValidateUserEmailTemplates::rejectionEmailTemplate(),
-                    'after_form' => esc_html__( 'Default macros:', '/languages' ) .
+                    'after_form' => esc_html__( 'Default macros:', 'validate-user' ) .
                                     ' {from_name}, {from_address}, {site_name}, {site_url}, {username}, {email}.  ' .
-                                    esc_html__( 'Other macros can be used based on form fields', '/languages' ) . '.'
+                                    esc_html__( 'Other macros can be used based on form fields', 'validate-user' ) . '.'
                 ]
             ];
 
@@ -330,7 +335,7 @@ if ( ! class_exists( 'ValidateUserSettings' ) ) {
 	        // Add settings section
 	        add_settings_section(
 		        $settings_section,
-		        esc_html__( 'reCAPTCHA Settings', '/languages' ),
+		        esc_html__( 'reCAPTCHA Settings', 'validate-user' ),
 		        '',
 		        $settings_group
 	        );
@@ -339,15 +344,15 @@ if ( ! class_exists( 'ValidateUserSettings' ) ) {
 	        $settings = [
 		        [
 			        'name' => 'validate-user-use-recaptcha',
-			        'display_name' => esc_html__( 'Use reCAPTCHA', '/languages' ),
+			        'display_name' => esc_html__( 'Use reCAPTCHA', 'validate-user' ),
 			        'type' => 'checkbox',
 			        'sanitize_callback' => 'sanitize_text_field',
 			        'default' => 0,
-                    'after_form' => esc_html__( 'Note: this only works if form is set to default.  For other forms reCAPTCHA will need to be set up separately.', '/languages' )
+                    'after_form' => esc_html__( 'Note: this only works if form is set to default.  For other forms reCAPTCHA will need to be set up separately.', 'validate-user' )
 		        ],
 		        [
 			        'name' => 'validate-user-recaptcha-public-key',
-			        'display_name' => esc_html__( 'Public Key', '/languages' ),
+			        'display_name' => esc_html__( 'Public Key', 'validate-user' ),
 			        'type' => 'text',
 			        'sanitize_callback' => 'sanitize_text_field',
 			        'default' => '',
@@ -355,7 +360,7 @@ if ( ! class_exists( 'ValidateUserSettings' ) ) {
 		        ],
 		        [
 			        'name' => 'validate-user-recaptcha-secret-key',
-			        'display_name' => esc_html__( 'Secret Key', '/languages' ),
+			        'display_name' => esc_html__( 'Secret Key', 'validate-user' ),
 			        'type' => 'password',
 			        'sanitize_callback' => 'sanitize_text_field',
 			        'default' => ''
@@ -482,8 +487,8 @@ if ( ! class_exists( 'ValidateUserSettings' ) ) {
         public function addOptionsPages(): void {
 
             add_menu_page(
-                esc_html__( 'Validate User', '/languages' ),
-                esc_html__( 'Validate User', '/languages' ),
+                esc_html__( 'Validate User', 'validate-user' ),
+                esc_html__( 'Validate User', 'validate-user' ),
                 'manage_options',
                 'validate-user',
                 [$this, 'settingsHTML'],
@@ -492,8 +497,8 @@ if ( ! class_exists( 'ValidateUserSettings' ) ) {
 
             add_submenu_page(
                 'validate-user',
-                esc_html__( 'Validate User Applications', '/languages' ),
-                esc_html__( 'Applications', '/languages' ),
+                esc_html__( 'Validate User Applications', 'validate-user' ),
+                esc_html__( 'Applications', 'validate-user' ),
                 'manage_options',
                 'edit.php?post_type=validate-apps'
             );
@@ -510,17 +515,17 @@ if ( ! class_exists( 'ValidateUserSettings' ) ) {
             ?>
 
             <div class="wrap validate-user">
-                <h1><?php esc_html_e( 'Validate User', '/languages' ); ?></h1>
-                <h2><?php esc_html_e( 'Documentation', '/languages' ); ?></h2>
+                <h1><?php esc_html_e( 'Validate User', 'validate-user' ); ?></h1>
+                <h2><?php esc_html_e( 'Documentation', 'validate-user' ); ?></h2>
                 <div>
-                    <p><?php esc_html_e( 'View the documentation on GitHub', '/languages' ); ?> <a href="https://github.com/B-rando1/validate-user#readme" target="_blank"><?php esc_html_e( 'here', '/languages' ); ?>.</a></p>
-                    <p><?php esc_html_e( 'If the GitHub link does not work for you, view the documentation', '/languages' ); ?> <a href="<?php echo VALIDATE_USER_URL . 'README.md'; ?>" target="_blank"><?php esc_html_e( 'here', '/languages' ); ?>.</a></p>
+                    <p><?php esc_html_e( 'View the documentation on GitHub', 'validate-user' ); ?> <a href="https://github.com/B-rando1/validate-user#readme" target="_blank"><?php esc_html_e( 'here', 'validate-user' ); ?>.</a></p>
+                    <p><?php esc_html_e( 'If the GitHub link does not work for you, view the documentation', 'validate-user' ); ?> <a href="<?php echo VALIDATE_USER_URL . 'README.md'; ?>" target="_blank"><?php esc_html_e( 'here', 'validate-user' ); ?>.</a></p>
                 </div>
 
                 <form action="options.php" method="post">
                     <?php settings_fields( 'validate-user' ); ?>
                     <?php do_settings_sections( 'validate-user' ); ?>
-                    <input name="Submit" type="submit" value="<?php esc_html_e( 'Save Changes', '/languages' ); ?>" class="button button-primary" />
+                    <input name="Submit" type="submit" value="<?php esc_html_e( 'Save Changes', 'validate-user' ); ?>" class="button button-primary" />
                 </form>
             </div>
 

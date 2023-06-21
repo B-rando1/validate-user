@@ -11,13 +11,14 @@
  * Requires at least: 5.9.0
  * Tested up to: 6.2.2
  * Requires PHP: 8.1
- * Text Domain: /languages
+ * Text Domain: validate-user
+ * Domain Path: /languages
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	die( esc_html__( 'Access Denied', '/languages' ) );
+	die( esc_html__( 'Access Denied', 'validate-user' ) );
 }
 
 if ( ! class_exists( 'ValidateUser' ) ) {
@@ -31,6 +32,11 @@ if ( ! class_exists( 'ValidateUser' ) ) {
 		private function __construct() {
 		}
 
+		/**
+		 * Gets the singleton instance
+		 *
+		 * @return ValidateUser The singleton instance
+		 */
 		public static function getInstance(): ValidateUser {
 
 			if ( null === self::$instance ) {
@@ -41,6 +47,11 @@ if ( ! class_exists( 'ValidateUser' ) ) {
 
 		}
 
+		/**
+		 * Sets up all the main plugin content
+		 *
+		 * @return void
+		 */
 		public static function setup(): void {
 
 			$instance = self::getInstance();
@@ -78,6 +89,11 @@ if ( ! class_exists( 'ValidateUser' ) ) {
 			add_filter( 'clean_url', [ $instance, 'addAsyncToScript' ], 11, 1 );
 		}
 
+		/**
+		 * Adds any JS and CSS that always appear everywhere on the site
+		 *
+		 * @return void
+		 */
 		public function enqueueGlobalScripts(): void {
 
 			wp_register_style( 'validate_user_shortcode_css', VALIDATE_USER_URL . '/css/style.css' );
@@ -88,8 +104,14 @@ if ( ! class_exists( 'ValidateUser' ) ) {
 
 		}
 
-		// A function to add an async attribute to any scripts with #asyncload at the end
-		public function addAsyncToScript( $url ) {
+		/**
+		 * Adds an async attribute to any scripts with #asyncload at the end
+		 *
+		 * @param string $url the script url that is being added
+		 *
+		 * @return string
+		 */
+		public function addAsyncToScript( string $url ): string {
 
 			if ( ! str_contains( $url, '#asyncload' ) ) {
 				return $url;

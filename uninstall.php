@@ -1,7 +1,7 @@
 <?php
 
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
-	die( esc_html__( 'Access Denied', '/languages' ) );
+	die( esc_html__( 'Access Denied', 'validate-user' ) );
 }
 
 // Delete Options

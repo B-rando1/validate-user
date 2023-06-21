@@ -1,7 +1,7 @@
 <?php
 
 if ( ! defined( 'ABSPATH' ) ) {
-	die( esc_html__( 'Access Denied', '/languages' ) );
+	die( esc_html__( 'Access Denied', 'validate-user' ) );
 }
 
 /** @var array $user_meta */
@@ -30,13 +30,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 <table class="validate-user form-table">
     <tr>
         <th>
-            <label for="validate-user-add-user-key"><?php esc_html_e( 'New Key', '/languages' ); ?></label>
+            <label for="validate-user-add-user-key"><?php esc_html_e( 'New Key', 'validate-user' ); ?></label>
         </th>
         <td>
             <input type="text" name="validate-user-add-user-key" id="validate-user-add-user-key" value="" class="regular-text" />
         </td>
         <th>
-            <label for="validate-user-add-user-value" class="alignright"><?php esc_html_e( 'New Value', '/languages' ); ?></label>
+            <label for="validate-user-add-user-value" class="alignright"><?php esc_html_e( 'New Value', 'validate-user' ); ?></label>
         </th>
         <td>
             <input type="text" name="validate-user-add-user-value" id="validate-user-add-user-value" value="" class="regular-text" />

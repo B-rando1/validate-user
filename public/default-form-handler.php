@@ -1,7 +1,7 @@
 <?php
 
 if ( ! defined( 'ABSPATH' ) ) {
-	die( esc_html__( 'Access Denied', '/languages' ) );
+	die( esc_html__( 'Access Denied', 'validate-user' ) );
 }
 
 if ( ! class_exists( 'ValidateUserDefaultFormHandler' ) ) {
@@ -15,6 +15,11 @@ if ( ! class_exists( 'ValidateUserDefaultFormHandler' ) ) {
 		private function __construct() {
 		}
 
+		/**
+		 * Gets the singleton instance
+		 *
+		 * @return ValidateUserDefaultFormHandler The singleton instance
+		 */
 		public static function getInstance(): ValidateUserDefaultFormHandler {
 
 			if ( null === self::$instance ) {
@@ -42,7 +47,7 @@ if ( ! class_exists( 'ValidateUserDefaultFormHandler' ) ) {
 					'jquery',
 					'wp-i18n'
 				] );
-				wp_set_script_translations( 'validate_user_handle_enquiry', '/languages' );
+				wp_set_script_translations( 'validate_user_handle_enquiry', 'validate-user' );
 				wp_localize_script( 'validate_user_handle_enquiry', 'testAjax', [ 'ajaxurl' => get_rest_url( null, 'v1/validate-user/submit' ) ] );
 				wp_enqueue_script( 'validate_user_handle_enquiry' );
 
@@ -68,7 +73,7 @@ if ( ! class_exists( 'ValidateUserDefaultFormHandler' ) ) {
 			$params = $data->get_params();
 
 			if ( ! wp_verify_nonce( $params['_wpnonce'], 'wp_rest' ) ) {
-				return new WP_Rest_Response( esc_html__( 'Message not sent', '/languages' ), 422 );
+				return new WP_Rest_Response( esc_html__( 'Message not sent', 'validate-user' ), 422 );
 			}
 
 			unset( $params['_wpnonce'] );
@@ -78,7 +83,7 @@ if ( ! class_exists( 'ValidateUserDefaultFormHandler' ) ) {
 			if ( '1' === get_option( 'validate-user-use-recaptcha', '0' ) ) {
 
 				if ( ! isset( $params['g-recaptcha-response'] ) ) {
-					return new WP_REST_Response( esc_html__( 'Please check the reCaptcha box.', '/languages' ), 422 );
+					return new WP_REST_Response( esc_html__( 'Please check the reCaptcha box.', 'validate-user' ), 422 );
 				}
 
 				$reCAPTCHA = $params['g-recaptcha-response'];
@@ -90,7 +95,7 @@ if ( ! class_exists( 'ValidateUserDefaultFormHandler' ) ) {
 				$response       = json_decode( $verifyResponse );
 
 				if ( ! $response->success ) {
-					return new WP_REST_Response( esc_html__( 'Robot verification failed, please try again.', '/languages' ), 422 );
+					return new WP_REST_Response( esc_html__( 'Robot verification failed, please try again.', 'validate-user' ), 422 );
 				}
 
 			}

@@ -1,20 +1,23 @@
 <?php
 
 if ( ! defined( 'ABSPATH' ) ) {
-	die( esc_html__( 'Access Denied', '/languages' ) );
+	die( esc_html__( 'Access Denied', 'validate-user' ) );
 }
 
 if ( ! class_exists( 'ValidateUserApplications' ) ) {
 
 	class ValidateUserApplications {
 
-		// $instance, __construct() and getInstance() are used to implement the Singleton design pattern
-		// ( makes sure there's always at most one instance of the class )
 		private static ValidateUserApplications|null $instance = null;
 
 		private function __construct() {
 		}
 
+		/**
+		 * Gets the singleton instance
+		 *
+		 * @return ValidateUserApplications The singleton instance
+		 */
 		public static function getInstance(): ValidateUserApplications {
 
 			if ( null === self::$instance ) {
@@ -56,7 +59,7 @@ if ( ! class_exists( 'ValidateUserApplications' ) ) {
 					'jquery',
 					'wp-i18n'
 				] );
-				wp_set_script_translations( 'validate_reject_script', '/languages' );
+				wp_set_script_translations( 'validate_reject_script', 'validate-user' );
 				wp_localize_script( 'validate_reject_script', 'testAjax', [ 'ajaxurl' => admin_url( 'admin-ajax.php' ) ] );
 				wp_enqueue_script( 'validate_reject_script' );
 			}
@@ -73,9 +76,9 @@ if ( ! class_exists( 'ValidateUserApplications' ) ) {
 					'has_archive'        => true,
 					'publicly_queryable' => false,
 					'labels'             => [
-						'name'          => esc_html__( 'Validate User Applications', '/languages' ),
-						'singular_name' => esc_html__( 'Validate User Application', '/languages' ),
-						'edit_item'     => esc_html__( 'View Application', '/languages' )
+						'name'          => esc_html__( 'Validate User Applications', 'validate-user' ),
+						'singular_name' => esc_html__( 'Validate User Application', 'validate-user' ),
+						'edit_item'     => esc_html__( 'View Application', 'validate-user' )
 					],
 					'supports'           => false,
 					'capability_type'    => 'post',
@@ -110,7 +113,7 @@ if ( ! class_exists( 'ValidateUserApplications' ) ) {
 
 		// Single Application Page
 		public function createMetaBox(): void {
-			add_meta_box( 'validate-user-applications', esc_html__( 'Validate User Application', '/languages' ), [
+			add_meta_box( 'validate-user-applications', esc_html__( 'Validate User Application', 'validate-user' ), [
 				$this,
 				'display_application'
 			], 'validate-apps' );
@@ -152,7 +155,7 @@ if ( ! class_exists( 'ValidateUserApplications' ) ) {
 			$user_id = wp_create_user( $username, $password, $email );
 
 			if ( gettype( $user_id ) !== "integer" ) {
-				$response['errors'][] = esc_html__( 'Failed to create new user', '/languages' ) . ': ' . $user_id->get_error_code();
+				$response['errors'][] = esc_html__( 'Failed to create new user', 'validate-user' ) . ': ' . $user_id->get_error_code();
 			}
 			else {
 
@@ -179,7 +182,7 @@ if ( ! class_exists( 'ValidateUserApplications' ) ) {
 				require_once( VALIDATE_USER_PATH . '/templates/email-templates.php' );
 				require_once( VALIDATE_USER_PATH . '/utilities/email.php' );
 
-				$subject = get_option( 'validate-user-confirmation-email-subject', esc_html__( 'Your User Application Has Been Approved', '/languages' ) );
+				$subject = get_option( 'validate-user-confirmation-email-subject', esc_html__( 'Your User Application Has Been Approved', 'validate-user' ) );
 				$message = get_option( 'validate-user-confirmation-email-message', ValidateUserEmailTemplates::confirmationEmailTemplate() );
 
 				$macros = [
@@ -200,7 +203,7 @@ if ( ! class_exists( 'ValidateUserApplications' ) ) {
 
 				$sent = wp_mail( $email, $subject, $message, $headers );
 				if ( ! $sent ) {
-					$response['errors'][] = esc_html__( 'Failed to send email', '/languages' );
+					$response['errors'][] = esc_html__( 'Failed to send email', 'validate-user' );
 				}
 
 			}
@@ -258,7 +261,7 @@ if ( ! class_exists( 'ValidateUserApplications' ) ) {
 				require_once( VALIDATE_USER_PATH . '/templates/email-templates.php' );
 				require_once( VALIDATE_USER_PATH . '/utilities/email.php' );
 
-				$subject = get_option( 'validate-user-rejection-email-subject', esc_html__( 'Your User Application Has Been Denied', '/languages' ) );
+				$subject = get_option( 'validate-user-rejection-email-subject', esc_html__( 'Your User Application Has Been Denied', 'validate-user' ) );
 				$message = get_option( 'validate-user-rejection-email-message', ValidateUserEmailTemplates::rejectionEmailTemplate() );
 
 				$macros = [
@@ -278,7 +281,7 @@ if ( ! class_exists( 'ValidateUserApplications' ) ) {
 
 				$sent = wp_mail( $email, $subject, $message, $headers );
 				if ( ! $sent ) {
-					$response['errors'][] = esc_html__( 'Failed to send email', '/languages' );
+					$response['errors'][] = esc_html__( 'Failed to send email', 'validate-user' );
 				}
 
 			}
@@ -306,8 +309,8 @@ if ( ! class_exists( 'ValidateUserApplications' ) ) {
 
 			return [
 				'cb'       => $columns['cb'],
-				'username' => esc_html__( 'Username', '/languages' ),
-				'email'    => esc_html__( 'Email', '/languages' )
+				'username' => esc_html__( 'Username', 'validate-user' ),
+				'email'    => esc_html__( 'Email', 'validate-user' )
 			];
 
 		}

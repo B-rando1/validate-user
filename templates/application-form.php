@@ -1,7 +1,7 @@
 <?php
 
 if ( ! defined( 'ABSPATH' ) ) {
-    die( esc_html__( 'Access Denied', '/languages' ) );
+    die( esc_html__( 'Access Denied', 'validate-user' ) );
 }
 
 ?>
@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class="validate-user">
 
     <?php
-    $form_title = esc_html( get_option( 'validate-user-form-title', esc_html__( 'Apply to Be a User', '/languages' ) ) );
+    $form_title = esc_html( get_option( 'validate-user-form-title', esc_html__( 'Apply to Be a User', 'validate-user' ) ) );
     if ( ! empty( trim( $form_title ) ) ) {
         echo '<h2>' . $form_title . '</h2>';
     }
@@ -24,13 +24,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
             <?php wp_nonce_field( 'wp_rest' ); ?>
 
-            <label for="username"><?php esc_html_e( 'Username:', '/languages' ); ?></label><br>
+            <label for="username"><?php esc_html_e( 'Username:', 'validate-user' ); ?></label><br>
             <input type="text" id="username" name="username" required><br><br>
 
             <label for="email"><?php esc_html_e( 'Email:', 'languages' ); ?></label><br>
             <input type="email" id="email" name="email" required><br><br>
 
-            <label for="message"><?php esc_html_e( 'Message:', '/languages' ); ?></label><br>
+            <label for="message"><?php esc_html_e( 'Message:', 'validate-user' ); ?></label><br>
             <textarea id="message" class="auto-resize" name="message"></textarea>
 
             <?php
@@ -39,7 +39,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                 <div class="g-recaptcha" data-sitekey="<?php echo $public_key; ?>"></div>
             <?php endif; ?>
 
-            <button type="submit"><?php esc_html_e( 'Submit Request', '/languages' ); ?></button>
+            <button type="submit"><?php esc_html_e( 'Submit Request', 'validate-user' ); ?></button>
 
         </form>
 
