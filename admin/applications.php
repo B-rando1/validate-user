@@ -8,6 +8,8 @@ if ( ! class_exists( 'ValidateUserApplications' ) ) {
 
 	class ValidateUserApplications {
 
+		// $instance, __construct() and getInstance() are used to implement the Singleton design pattern
+		// ( makes sure there's always at most one instance of the class )
 		private static ValidateUserApplications|null $instance = null;
 
 		private function __construct() {

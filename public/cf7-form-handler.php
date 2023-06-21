@@ -8,6 +8,8 @@ if ( ! class_exists( 'ValidateUserCF7FormHandler' ) ) {
 
 	class ValidateUserCF7FormHandler {
 
+		// $instance, __construct() and getInstance() are used to implement the Singleton design pattern
+		// ( makes sure there's always at most one instance of the class )
 		private static ValidateUserCF7FormHandler|null $instance = null;
 
 		private string|null $cf7StatusMessage = null;

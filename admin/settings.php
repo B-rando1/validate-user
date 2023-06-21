@@ -8,7 +8,9 @@ if ( ! class_exists( 'ValidateUserSettings' ) ) {
 
     class ValidateUserSettings {
 
-	    private static ValidateUserSettings|null $instance = null;
+	    // $instance, __construct() and getInstance() are used to implement the Singleton design pattern
+	    // ( makes sure there's always at most one instance of the class )
+        private static ValidateUserSettings|null $instance = null;
 
 	    private function __construct() {
 	    }

@@ -8,6 +8,8 @@ if ( ! class_exists( 'ValidateUserReCaptcha' ) ) {
 
 	class ValidateUserReCaptcha {
 
+		// $instance, __construct() and getInstance() are used to implement the Singleton design pattern
+		// ( makes sure there's always at most one instance of the class )
 		private static ValidateUserReCaptcha|null $instance = null;
 
 		private function __construct() {

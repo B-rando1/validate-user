@@ -24,6 +24,8 @@ if ( ! class_exists( 'ValidateUser' ) ) {
 
 	class ValidateUser {
 
+		// $instance, __construct() and getInstance() are used to implement the Singleton design pattern
+		// ( makes sure there's always at most one instance of the class )
 		private static ValidateUser|null $instance = null;
 
 		private function __construct() {
@@ -46,6 +48,7 @@ if ( ! class_exists( 'ValidateUser' ) ) {
 			define( 'VALIDATE_USER_PATH', plugin_dir_path( __FILE__ ) );
 			define( 'VALIDATE_USER_URL', plugin_dir_url( __FILE__ ) );
 
+			// Make sure all the main classes exist
 			require_once( VALIDATE_USER_PATH . 'public/shortcode.php' );
 			require_once( VALIDATE_USER_PATH . 'public/gutenberg-block.php' );
 			require_once( VALIDATE_USER_PATH . 'public/classic-widget.php' );
@@ -58,6 +61,7 @@ if ( ! class_exists( 'ValidateUser' ) ) {
 			require_once( VALIDATE_USER_PATH . 'admin/user-editor.php' );
 			require_once( VALIDATE_USER_PATH . 'admin/settings.php' );
 
+			// Run the setup method for all the main classes
 			ValidateUserShortcode::setup();
 			ValidateUserGutenbergBlock::setup();
 			ValidateUserReCaptcha::setup();
@@ -84,6 +88,7 @@ if ( ! class_exists( 'ValidateUser' ) ) {
 
 		}
 
+		// A function to add an async attribute to any scripts with #asyncload at the end
 		public function addAsyncToScript( $url ) {
 
 			if ( ! str_contains( $url, '#asyncload' ) ) {

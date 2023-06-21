@@ -31,11 +31,11 @@ foreach ( $options as $option ) {
 }
 
 // Delete Applications Post Type
-$application_ids = get_posts([
+$application_ids = get_posts( [
 	'fields' => 'ids',
 	'numberposts' => -1,
 	'post_type' => 'validate-apps'
-]);
+] );
 
 foreach ( $application_ids as $id ) {
 	wp_delete_post( $id );
@@ -44,13 +44,22 @@ foreach ( $application_ids as $id ) {
 // Delete User Meta and change role
 $users = get_users();
 foreach ( $users as $user ) {
-	delete_user_meta( $user->ID, 'validate-user-business');
+
+	$user_meta = get_user_meta( $user->ID );
+	foreach ( $user_meta as $key => $value ) {
+
+		if ( str_starts_with( $key, 'validate-user-' ) ) {
+			delete_user_meta( $user->ID, $key);
+		}
+
+	}
 
 	$roles = $user->roles;
 	if ( in_array( 'validated_user', $roles, true ) ) {
 		$user->remove_role( 'validated_user' );
 		$user->add_role( 'subscriber' );
 	}
+
 }
 
 // Remove custom role
