@@ -53,5 +53,5 @@ foreach ( $users as $user ) {
 	}
 }
 
-// Deal with custom role
+// Remove custom role
 remove_role( 'validated_user' );
