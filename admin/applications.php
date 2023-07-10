@@ -256,7 +256,7 @@ if ( ! class_exists( 'ValidateUserApplications' ) ) {
 
 			}
 
-			do_action( 'validate-user-confirm-user', $user_id, $response['errors'] );
+			do_action( 'validate-user-confirm-user', $user_id, $post_id, $response['errors'] );
 
 			if ( empty( $response['errors'] ) ) {
 

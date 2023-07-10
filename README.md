@@ -91,14 +91,17 @@ Returns:
 - `$message: string` - the updated message body.
 
 ### Action Hooks
-#### `validate-user-confirm-user( int $user_id, array $errors )`
+#### `validate-user-confirm-user( int $user_id, int $post_id, array $errors )`
 Allows developers to add an action right after a new user application has been accepted.
 
 Parameters:
 
 - `$user_id: int` - the id for the new user that has been created.
 
+- `$post_id: int` - the id for the application. 
+
 - `$errors: string[]` - an array of strings containing any error messages that may have been generated during user creation.
+  - Note that if `$errors` is not empty, the application will not be deleted.
 
 #### `validate-user-reject-user( int $post_id, array $errors )`
 Allows developers to add an action right after a new user application has been rejected.
@@ -108,3 +111,4 @@ Parameters:
 - `$post_id: int` - the id for the application that is about to be deleted.
 
 - `$errors: string[]` - an array of strings containing any error messages that may have been generated during user rejection.
+    - Note that if `$errors` is not empty, the application will not be deleted.
