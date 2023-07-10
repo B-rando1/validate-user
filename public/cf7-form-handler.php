@@ -32,6 +32,11 @@ if ( ! class_exists( 'ValidateUserCF7FormHandler' ) ) {
 
 		}
 
+		/**
+		 * Sets up the hooks for handling a CF7 form
+		 *
+		 * @return void
+		 */
 		public static function setup(): void {
 
 			$instance = self::getInstance();
@@ -41,7 +46,15 @@ if ( ! class_exists( 'ValidateUserCF7FormHandler' ) ) {
 
 		}
 
-		public function cf7SkipMail( $skip_mail, $contactForm ) {
+		/**
+		 * Tells CF7 not to send an email for the form if it has been set as the form for validating new users
+		 *
+		 * @param bool $skip_mail The current value of whether to skip mail.
+		 * @param object $contactForm The CF7 object for the form that was just submitted.
+		 *
+		 * @return bool
+		 */
+		public function cf7SkipMail( bool $skip_mail, object $contactForm ): bool {
 
 			if ( 'cf7' !== get_option( 'validate-user-form-type', 'default' ) || $contactForm->id() != get_option( 'validate-user-cf7-form-id', '' ) ) {
 				return $skip_mail;
@@ -51,7 +64,16 @@ if ( ! class_exists( 'ValidateUserCF7FormHandler' ) ) {
 
 		}
 
-		public function cf7GetData( $contactForm, &$abort, $submission ): mixed {
+		/**
+		 * Gets the data from a CF7 form if it has been set as the form for validating new users
+		 *
+		 * @param object $contactForm The CF7 object for the form that was just submitted.
+		 * @param bool $abort Whether to give an error message to the form.
+		 * @param object $submission The CF7 object for the form data that was just submitted.
+		 *
+		 * @return object
+		 */
+		public function cf7GetData( object $contactForm, bool &$abort, object $submission ): object {
 
 			if ( 'cf7' !== get_option( 'validate-user-form-type', 'default' ) || $contactForm->id() != get_option( 'validate-user-cf7-form-id', '' ) ) {
 				return $contactForm;
@@ -73,6 +95,13 @@ if ( ! class_exists( 'ValidateUserCF7FormHandler' ) ) {
 
 		}
 
+		/**
+		 * Overrides the CF7 message to give a custom response to the applicant.
+		 *
+		 * @param string $message The message to display on the front end.
+		 *
+		 * @return string The updated message to display on the front end.
+		 */
 		public function cf7DisplayMessage( string $message ): string {
 
 			if ( null !== $this->cf7StatusMessage ) {

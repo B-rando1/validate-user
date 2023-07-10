@@ -30,6 +30,11 @@ if ( ! class_exists( 'ValidateUserSettings' ) ) {
 
 	    }
 
+	    /**
+         * Sets up hooks for the Validate User settings panel.
+         *
+	     * @return void
+	     */
         public static function setup(): void {
 
             $instance = self::getInstance();
@@ -47,7 +52,14 @@ if ( ! class_exists( 'ValidateUserSettings' ) ) {
 
         }
 
-        public function enqueueScripts( $hook ): void {
+	    /**
+         * Enqueues JS for the Validate User settings panel.
+         *
+	     * @param string $hook The hook for the admin panel.
+	     *
+	     * @return void
+	     */
+        public function enqueueScripts( string $hook ): void {
 
             if ( 'toplevel_page_validate-user' === $hook ) {
 
@@ -58,7 +70,11 @@ if ( ! class_exists( 'ValidateUserSettings' ) ) {
 
         }
 
-        // Register Settings
+	    /**
+         * Registers the settings fields.
+         *
+	     * @return void
+	     */
         public function createSettings(): void {
 
             require_once( VALIDATE_USER_PATH . '/templates/email-templates.php' );
@@ -395,7 +411,15 @@ if ( ! class_exists( 'ValidateUserSettings' ) ) {
 
         }
 
-        public function inputField( $args ): void {
+	    /**
+         * Creates html for a settings field.
+         *
+	     * @param array $args An array with information about the field to display.  Must have keys 'type', 'name',
+         *                    and 'default'.  Optional key 'after_form'.
+	     *
+	     * @return void
+	     */
+        public function inputField( array $args ): void {
 
             if ( $args['type'] === 'text' || $args['type'] === 'email' || $args['type'] === 'password') {
                 echo '<input type="' . $args['type'] . '"' .
@@ -442,6 +466,13 @@ if ( ! class_exists( 'ValidateUserSettings' ) ) {
 
         }
 
+	    /**
+         * Validates an email template, allowing a few html formatting options.
+         *
+	     * @param string $input The input email message template.
+	     *
+	     * @return string The validated email message template.
+	     */
         public function validateEmailTemplate( string $input ): string {
 
             return wp_kses(
@@ -457,6 +488,14 @@ if ( ! class_exists( 'ValidateUserSettings' ) ) {
 
         }
 
+	    /**
+         * Encrypts an option before it is saved to the database.
+         *
+	     * @param string $new_value The new value of the option to save.
+	     * @param string $old_value The old value of the option, which is used if encryption fails.
+	     *
+	     * @return string The encrypted value, or the old value if encryption fails.
+	     */
         public function encryptOption( string $new_value, string $old_value ): string {
 
             require_once( VALIDATE_USER_PATH . 'utilities/encryption.php' );
@@ -470,6 +509,14 @@ if ( ! class_exists( 'ValidateUserSettings' ) ) {
 
         }
 
+	    /**
+         * Decrypts an encrypted option when it is retrieved from the database.
+         *
+	     * @param string $value The encrypted value to decrypt.
+	     * @param string $option The option name.
+	     *
+	     * @return string
+	     */
         public function decryptOption( string $value, string $option ): string {
 
 	        require_once( VALIDATE_USER_PATH . 'utilities/encryption.php' );
@@ -483,7 +530,11 @@ if ( ! class_exists( 'ValidateUserSettings' ) ) {
 
         }
 
-        // Page Navigation
+	    /**
+         * Adds the settings page to the admin panel.
+         *
+	     * @return void
+	     */
         public function addOptionsPages(): void {
 
             add_menu_page(
@@ -505,7 +556,11 @@ if ( ! class_exists( 'ValidateUserSettings' ) ) {
 
         }
 
-        // The Page Itself
+	    /**
+         * Generates the HTML for the settings page itself.
+         *
+	     * @return void
+	     */
         public function settingsHTML(): void {
 
             if ( ! current_user_can( 'manage_options' ) ) {

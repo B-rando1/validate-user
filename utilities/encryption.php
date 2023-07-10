@@ -16,6 +16,13 @@ if ( ! class_exists( 'ValidateUserEncryption' ) ) {
 			$this->salt = $this->getDefaultSalt();
 		}
 
+		/**
+		 * Encrypts a string.
+		 *
+		 * @param string $value The string to encrypt.
+		 *
+		 * @return string|bool A string containing the encrypted value if successful; false otherwise.
+		 */
 		public function encrypt( string $value ): string|bool {
 
 			if ( ! extension_loaded( 'openssl' ) ) {
@@ -35,6 +42,13 @@ if ( ! class_exists( 'ValidateUserEncryption' ) ) {
 
 		}
 
+		/**
+		 * Decrypts an encrypted string..
+		 *
+		 * @param string $raw_value The encrypted string to decrypt.
+		 *
+		 * @return string|bool A string containing the decrypted value if successful; false otherwise.
+		 */
 		public function decrypt( string $raw_value ): string|bool {
 
 			if ( ! extension_loaded( 'openssl' ) ) {
@@ -58,6 +72,11 @@ if ( ! class_exists( 'ValidateUserEncryption' ) ) {
 
 		}
 
+		/**
+		 * Gets the default key.
+		 *
+		 * @return string The user's default key.
+		 */
 		private function getDefaultKey(): string {
 
 			if ( defined( 'LOGGED_IN_KEY' ) && '' !== LOGGED_IN_KEY ) {
@@ -69,6 +88,11 @@ if ( ! class_exists( 'ValidateUserEncryption' ) ) {
 
 		}
 
+		/**
+		 * Gets the default salt.
+		 *
+		 * @return string The user's default salt.
+		 */
 		private function getDefaultSalt(): string {
 
 			if ( defined( 'LOGGED_IN_SALT' ) && '' !== LOGGED_IN_SALT ) {

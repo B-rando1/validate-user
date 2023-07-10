@@ -30,6 +30,11 @@ if ( ! class_exists( 'ValidateUserEditor' ) ) {
 
 		}
 
+		/**
+		 * Sets up hooks for modifying the user editor.
+		 *
+		 * @return void
+		 */
 		public static function setup(): void {
 
 			$instance = self::getInstance();
@@ -42,7 +47,14 @@ if ( ! class_exists( 'ValidateUserEditor' ) ) {
 
 		}
 
-		public function displayUserMeta( $profile_user ): void {
+		/**
+		 * Adds a row to the user editor, showing there any additional information they entered into the applicant form.
+		 *
+		 * @param object $profile_user The user object.
+		 *
+		 * @return void
+		 */
+		public function displayUserMeta( object $profile_user ): void {
 
 			$user_meta = get_user_meta( $profile_user->ID );
 
@@ -50,7 +62,14 @@ if ( ! class_exists( 'ValidateUserEditor' ) ) {
 
 		}
 
-		public function saveUserMeta( $user_id ): void {
+		/**
+		 * Saves user meta.
+		 *
+		 * @param int $user_id The user id to update meta for.
+		 *
+		 * @return void
+		 */
+		public function saveUserMeta( int $user_id ): void {
 
 			if ( ! current_user_can( 'edit_user', $user_id ) ) {
 				return;
@@ -80,6 +99,7 @@ if ( ! class_exists( 'ValidateUserEditor' ) ) {
 
 				}
 
+				// Updating existing information
 				update_user_meta( $user_id, sanitize_text_field( $key ), sanitize_text_field( $value ) );
 
 			}

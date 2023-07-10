@@ -1,0 +1,343 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Validate User\n"
+"POT-Creation-Date: 2023-06-21 15:16-0400\n"
+"PO-Revision-Date: 2023-06-21 19:22+0000\n"
+"Last-Translator: \n"
+"Language-Team: Spanish (Mexico)\n"
+"Language: es_MX\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;esc_html__;esc_html_e\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: node_modules\n"
+"X-Poedit-SearchPathExcluded-1: locales\n"
+"X-Poedit-SearchPathExcluded-2: .git\n"
+"X-Poedit-SearchPathExcluded-3: build\n"
+"\n"
+"Report-Msgid-Bugs-To: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Loco-Version: 2.6.4; wp-6.2.2"
+
+#: admin/applications.php:4 admin/index.php:3 admin/settings.php:4
+#: admin/user-editor.php:4 css/index.php:3 index.php:3 js/index.php:3
+#: public/cf7-form-handler.php:4 public/classic-widget.php:4
+#: public/default-form-handler.php:4 public/gutenberg-block.php:4
+#: public/index.php:3 public/recaptcha.php:4 public/shortcode.php:4
+#: src/index.php:3 templates/application-form.php:4
+#: templates/email-templates.php:4 templates/index.php:3
+#: templates/user-editor.php:4 templates/view-single-application.php:4
+#: uninstall.php:4 utilities/create-application.php:4
+#: utilities/encryption.php:4 utilities/index.php:3 validate-user.php:20
+msgid "Access Denied"
+msgstr ""
+
+#: admin/applications.php:79 admin/settings.php:500
+msgid "Validate User Applications"
+msgstr ""
+
+#: admin/applications.php:80 admin/applications.php:116
+msgid "Validate User Application"
+msgstr ""
+
+#: admin/applications.php:81
+msgid "View Application"
+msgstr ""
+
+#: admin/applications.php:158
+msgid "Failed to create new user"
+msgstr ""
+
+#: admin/applications.php:185
+msgid "Your User Application Has Been Approved"
+msgstr ""
+
+#: admin/applications.php:206 admin/applications.php:284
+msgid "Failed to send email"
+msgstr ""
+
+#: admin/applications.php:264
+msgid "Your User Application Has Been Denied"
+msgstr ""
+
+#: admin/applications.php:312 templates/email-templates.php:19
+msgid "Username"
+msgstr ""
+
+#: admin/applications.php:313 templates/email-templates.php:20
+msgid "Email"
+msgstr ""
+
+#: admin/settings.php:74
+msgid "Form Settings"
+msgstr ""
+
+#: admin/settings.php:90
+msgid "Form Title"
+msgstr ""
+
+#: admin/settings.php:93 templates/application-form.php:12
+msgid "Apply to Be a User"
+msgstr ""
+
+#: admin/settings.php:94
+msgid "Leave empty for no title."
+msgstr ""
+
+#: admin/settings.php:98
+msgid "Form Type"
+msgstr ""
+
+#: admin/settings.php:109
+msgid "Contact Form 7 Form"
+msgstr ""
+
+#: admin/settings.php:149
+msgid "Email Settings - New Application Message"
+msgstr ""
+
+#: admin/settings.php:158
+msgid "Send Admin Email"
+msgstr ""
+
+#: admin/settings.php:165 admin/settings.php:244
+msgid "From Name"
+msgstr ""
+
+#: admin/settings.php:172 admin/settings.php:251
+msgid "From Address"
+msgstr ""
+
+#: admin/settings.php:179
+msgid "To Name"
+msgstr ""
+
+#: admin/settings.php:186
+msgid "To Address"
+msgstr ""
+
+#: admin/settings.php:193
+msgid "Message Template"
+msgstr ""
+
+#: admin/settings.php:197 admin/settings.php:275 admin/settings.php:300
+msgid "Default macros:"
+msgstr ""
+
+#: admin/settings.php:199 admin/settings.php:277 admin/settings.php:302
+msgid "Other macros can be used based on form fields"
+msgstr ""
+
+#: admin/settings.php:258
+msgid "User Confirmed - Subject Template"
+msgstr ""
+
+#: admin/settings.php:265
+msgid "User Confirmed - Message Template"
+msgstr ""
+
+#: admin/settings.php:278
+msgid "must appear in the email)"
+msgstr ""
+
+#: admin/settings.php:282
+msgid "Send Rejection Email"
+msgstr ""
+
+#: admin/settings.php:289
+msgid "User Rejected - Subject Template"
+msgstr ""
+
+#: admin/settings.php:296
+msgid "User Rejected - Message Template"
+msgstr ""
+
+#: admin/settings.php:338
+msgid "reCAPTCHA Settings"
+msgstr ""
+
+#: admin/settings.php:347
+msgid "Use reCAPTCHA"
+msgstr ""
+
+#: admin/settings.php:351
+msgid ""
+"Note: this only works if form is set to default.  For other forms reCAPTCHA "
+"will need to be set up separately."
+msgstr ""
+
+#: admin/settings.php:355
+msgid "Public Key"
+msgstr ""
+
+#: admin/settings.php:359
+msgid "Must be a valid reCAPTCHA v2 site key"
+msgstr ""
+
+#: admin/settings.php:363
+msgid "Secret Key"
+msgstr ""
+
+#: admin/settings.php:490 admin/settings.php:491 admin/settings.php:518
+msgid "Validate User"
+msgstr ""
+
+#: admin/settings.php:501
+msgid "Applications"
+msgstr ""
+
+#: admin/settings.php:519
+msgid "Documentation"
+msgstr ""
+
+#: admin/settings.php:521
+msgid "View the documentation on GitHub"
+msgstr ""
+
+#: admin/settings.php:521 admin/settings.php:522
+#: templates/email-templates.php:44
+msgid "here"
+msgstr ""
+
+#: admin/settings.php:522
+msgid "If the GitHub link does not work for you, view the documentation"
+msgstr ""
+
+#: admin/settings.php:528
+msgid "Save Changes"
+msgstr ""
+
+#: js/validate-reject.js:33 js/validate-reject.js:68
+msgid "Ajax Error"
+msgstr ""
+
+#: public/classic-widget.php:16
+msgid "New User Form"
+msgstr ""
+
+#: public/default-form-handler.php:76
+msgid "Message not sent"
+msgstr ""
+
+#: public/default-form-handler.php:86
+msgid "Please check the reCaptcha box."
+msgstr ""
+
+#: public/default-form-handler.php:98
+msgid "Robot verification failed, please try again."
+msgstr ""
+
+#: src/index.js:20 templates/application-form.php:27
+#: templates/view-single-application.php:26
+msgid "Username:"
+msgstr ""
+
+#: src/index.js:23 templates/application-form.php:30
+#: templates/view-single-application.php:27
+msgid "Email:"
+msgstr ""
+
+#: src/index.js:26 templates/application-form.php:33
+#: templates/view-single-application.php:29
+msgid "Message:"
+msgstr ""
+
+#: src/index.js:29 templates/application-form.php:42
+msgid "Submit Request"
+msgstr ""
+
+#: templates/email-templates.php:15 templates/email-templates.php:40
+#: templates/email-templates.php:57
+msgid "Hello"
+msgstr ""
+
+#: templates/email-templates.php:17
+msgid "There is a new user application on your site"
+msgstr ""
+
+#: templates/email-templates.php:22
+msgid "Message"
+msgstr ""
+
+#: templates/email-templates.php:26
+msgid "Other information"
+msgstr ""
+
+#: templates/email-templates.php:30
+msgid "View the application at"
+msgstr ""
+
+#: templates/email-templates.php:42 templates/email-templates.php:59
+msgid "Your user application for"
+msgstr ""
+
+#: templates/email-templates.php:42
+msgid "has been validated"
+msgstr ""
+
+#: templates/email-templates.php:43
+msgid "Your username is"
+msgstr ""
+
+#: templates/email-templates.php:44
+msgid "Set your password"
+msgstr ""
+
+#: templates/email-templates.php:46
+msgid "Thanks for joining our website!"
+msgstr ""
+
+#: templates/email-templates.php:59
+msgid "has been denied"
+msgstr ""
+
+#: templates/email-templates.php:61
+msgid "Thanks for reaching out to us."
+msgstr ""
+
+#: templates/user-editor.php:33
+msgid "New Key"
+msgstr ""
+
+#: templates/user-editor.php:39
+msgid "New Value"
+msgstr ""
+
+#: templates/view-single-application.php:43
+msgid "Validate Application"
+msgstr ""
+
+#: templates/view-single-application.php:46
+msgid "Reject Application"
+msgstr ""
+
+#: utilities/create-application.php:76
+msgid "Failed to send admin message"
+msgstr ""
+
+#: utilities/create-application.php:82
+msgid "Your request has been successfully sent"
+msgstr ""
+
+#: utilities/create-application.php:90
+msgid "Username field must be filled out"
+msgstr ""
+
+#: utilities/create-application.php:93
+msgid "Email field must be filled out"
+msgstr ""
+
+#: utilities/create-application.php:98 utilities/create-application.php:114
+msgid "That username is already taken"
+msgstr ""
+
+#: utilities/create-application.php:101
+msgid "There is already a user with that email"
+msgstr ""
+
+#: utilities/create-application.php:117
+msgid "There is already an application with that email"
+msgstr ""

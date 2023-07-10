@@ -30,6 +30,11 @@ if ( ! class_exists( 'ValidateUserDefaultFormHandler' ) ) {
 
 		}
 
+		/**
+		 * Sets up the hooks for handling the default form
+		 *
+		 * @return void
+		 */
 		public static function setup(): void {
 
 			$instance = self::getInstance();
@@ -39,6 +44,11 @@ if ( ! class_exists( 'ValidateUserDefaultFormHandler' ) ) {
 
 		}
 
+		/**
+		 * Enqueues the JS script for handling submission on the default form
+		 *
+		 * @return void
+		 */
 		public function enqueueScripts(): void {
 
 			if ( 'default' === get_option( 'validate-user-form-type', 'default' ) ) {
@@ -55,6 +65,11 @@ if ( ! class_exists( 'ValidateUserDefaultFormHandler' ) ) {
 
 		}
 
+		/**
+		 * Creates the REST endpoint that the default form submits its data to
+		 *
+		 * @return void
+		 */
 		public function createRestEndpoint(): void {
 
 			if ( 'default' === get_option( 'validate-user-form-type', 'default' ) ) {
@@ -68,7 +83,14 @@ if ( ! class_exists( 'ValidateUserDefaultFormHandler' ) ) {
 
 		}
 
-		public function handleEnquiry( $data ): WP_REST_Response {
+		/**
+		 * Takes form data, makes sure it is valid, and creates an application
+		 *
+		 * @param object $data The form data object.  Must include keys 'username' and 'email'
+		 *
+		 * @return WP_REST_Response
+		 */
+		public function handleEnquiry( object $data ): WP_REST_Response {
 
 			$params = $data->get_params();
 

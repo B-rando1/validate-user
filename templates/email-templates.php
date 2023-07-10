@@ -8,6 +8,9 @@ if ( ! class_exists( 'ValidateUserEmailTemplates' ) ) {
 
     class ValidateUserEmailTemplates {
 
+	    /**
+	     * @return string The default admin email template.
+	     */
         public static function adminEmailTemplate(): string {
 
             ob_start();
@@ -33,6 +36,9 @@ if ( ! class_exists( 'ValidateUserEmailTemplates' ) ) {
 
         }
 
+	    /**
+	     * @return string The default user confirmation template.
+	     */
         public static function confirmationEmailTemplate(): string {
 
             ob_start();
@@ -50,6 +56,9 @@ if ( ! class_exists( 'ValidateUserEmailTemplates' ) ) {
 
         }
 
+	    /**
+	     * @return string The default user rejection template.
+	     */
         public static function rejectionEmailTemplate(): string {
 
             ob_start();

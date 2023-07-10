@@ -6,6 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! class_exists( 'ValidateUserReCaptcha' ) ) {
 
+
 	class ValidateUserReCaptcha {
 
 		// $instance, __construct() and getInstance() are used to implement the Singleton design pattern
@@ -30,6 +31,11 @@ if ( ! class_exists( 'ValidateUserReCaptcha' ) ) {
 
 		}
 
+		/**
+		 * Sets up the hooks for reCAPTCHA functionality
+		 *
+		 * @return void
+		 */
 		public static function setup(): void {
 
 			$instance = self::getInstance();
@@ -38,6 +44,11 @@ if ( ! class_exists( 'ValidateUserReCaptcha' ) ) {
 
 		}
 
+		/**
+		 * Enqueues the JS for reCAPTCHA
+		 *
+		 * @return void
+		 */
 		public function enqueueScripts(): void {
 
 			if ( '1' === get_option( 'validate-user-use-recaptcha', '0') && 'default' === get_option( 'validate-user-form-type', 'default' ) ) {

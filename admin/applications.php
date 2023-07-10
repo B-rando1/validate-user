@@ -1,5 +1,8 @@
 <?php
 
+use JetBrains\PhpStorm\ArrayShape;
+use JetBrains\PhpStorm\NoReturn;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	die( esc_html__( 'Access Denied', 'validate-user' ) );
 }
@@ -28,6 +31,11 @@ if ( ! class_exists( 'ValidateUserApplications' ) ) {
 
 		}
 
+		/**
+		 * Sets up hooks for creating and managing the application custom post types
+		 *
+		 * @return void
+		 */
 		public static function setup(): void {
 
 			$instance = self::getInstance();
@@ -50,7 +58,14 @@ if ( ! class_exists( 'ValidateUserApplications' ) ) {
 
 		}
 
-		public function enqueueScripts( $hook ): void {
+		/**
+		 * Enqueues the JS for managing applications
+		 *
+		 * @param string $hook The hook for the current admin panel.
+		 *
+		 * @return void
+		 */
+		public function enqueueScripts( string $hook ): void {
 
 			global $post;
 
@@ -67,6 +82,12 @@ if ( ! class_exists( 'ValidateUserApplications' ) ) {
 		}
 
 		// Custom Post Type stuff
+
+		/**
+		 * Registers the Validate User Application custom post type
+		 *
+		 * @return void
+		 */
 		public function registerCustomPostType(): void {
 
 			register_post_type(
@@ -90,6 +111,11 @@ if ( ! class_exists( 'ValidateUserApplications' ) ) {
 
 		}
 
+		/**
+		 * Highlights the Validate User admin panel if inside an application
+		 *
+		 * @return void
+		 */
 		public function applicationsActive(): void {
 
 			global $parent_file, $post_type;
@@ -100,7 +126,11 @@ if ( ! class_exists( 'ValidateUserApplications' ) ) {
 
 		}
 
-		// Add New Role
+		/**
+		 * Creates a new role for validated users, with the same privileges as subscribers.
+		 *
+		 * @return void
+		 */
 		public function addRole(): void {
 
 			if ( wp_roles()->is_role( 'validated_user' ) ) {
@@ -112,6 +142,12 @@ if ( ! class_exists( 'ValidateUserApplications' ) ) {
 		}
 
 		// Single Application Page
+
+		/**
+		 * Adds a meta box displaying applicant information.
+		 *
+		 * @return void
+		 */
 		public function createMetaBox(): void {
 			add_meta_box( 'validate-user-applications', esc_html__( 'Validate User Application', 'validate-user' ), [
 				$this,
@@ -119,6 +155,11 @@ if ( ! class_exists( 'ValidateUserApplications' ) ) {
 			], 'validate-apps' );
 		}
 
+		/**
+		 * Displays the applicant's information.
+		 *
+		 * @return void
+		 */
 		public function display_application(): void {
 
 			$id = get_the_id();
@@ -126,7 +167,12 @@ if ( ! class_exists( 'ValidateUserApplications' ) ) {
 
 		}
 
-		public function createValidUser(): void {
+		/**
+		 * Creates a user from the application data, and sends a confirmation email.
+		 *
+		 * @return void Redirects to the 'View User Applications' admin page
+		 */
+		#[NoReturn] public function createValidUser(): void {
 
 			check_ajax_referer( 'validate_user_nonce', 'nonce' );
 
@@ -225,7 +271,12 @@ if ( ! class_exists( 'ValidateUserApplications' ) ) {
 
 		}
 
-		public function rejectUser(): void {
+		/**
+		 * Deletes a rejected application, and sends a rejection email if the setting is active.
+		 *
+		 * @return void Redirects to the 'View User Applications' admin page
+		 */
+		#[NoReturn] public function rejectUser(): void {
 
 			check_ajax_referer( 'validate_user_nonce', 'nonce' );
 
@@ -300,12 +351,29 @@ if ( ! class_exists( 'ValidateUserApplications' ) ) {
 
 		}
 
+		/**
+		 * Hides the publish box, since applications cannot be updated or published.
+		 *
+		 * @return void
+		 */
 		public function hidePublishBox(): void {
 			remove_meta_box( 'submitdiv', 'validate-apps', 'side' );
 		}
 
 		// All Applications Page
-		public function applicationsColumns( array $columns ): array {
+
+		/**
+		 * Adds 'username' and 'email' columns to the 'View User Applications' page, and removes any other columns
+		 *
+		 * @param array $columns The current columns to be displayed
+		 *
+		 * @return array The updated columns to be displayed.
+		 */
+		#[ArrayShape( [
+			'cb' => "mixed",
+			'username' => "string",
+			'email' => "string"
+		] )] public function applicationsColumns( array $columns ): array {
 
 			return [
 				'cb'       => $columns['cb'],
@@ -315,18 +383,34 @@ if ( ! class_exists( 'ValidateUserApplications' ) ) {
 
 		}
 
+		/**
+		 * Fills the columns for each application in the 'View User Applications' admin page.
+		 *
+		 * @param string $column The column id to fill.
+		 * @param int $post_id The id of the application to fill the column for.
+		 *
+		 * @return void
+		 */
 		public function fillApplicationsColumn( string $column, int $post_id ): void {
 			echo esc_html( get_post_meta( $post_id, $column, true ) );
 		}
 
-		public function rowActions( $actions, WP_Post $post ) {
+		/**
+		 * Replaces the 'edit', 'quick edit', 'trash', etc. buttons with 'View Application'.
+		 *
+		 * @param string[] $actions The current action links to be displayed.
+		 * @param WP_Post $post The WP_Post object.
+		 *
+		 * @return string[] The updated action links.
+		 */
+		public function rowActions( array $actions, WP_Post $post ): array {
 
 			if ( $post->post_type !== 'validate-apps' ) {
 				return $actions;
 			}
 
 			return [
-				'<a href="' . get_edit_post_link( $post ) . '">View Application</a>'
+				'<a href="' . get_edit_post_link( $post ) . '">' . esc_html__( 'View Application', 'validate-user' ) . '</a>'
 			];
 
 		}

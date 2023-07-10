@@ -30,6 +30,11 @@ if ( ! class_exists( 'ValidateUserGutenbergBlock' ) ) {
 
 		}
 
+		/**
+		 * Sets up the hooks for the gutenberg block functionality
+		 *
+		 * @return void
+		 */
 		public static function setup(): void {
 
 			$instance = self::getInstance();
@@ -38,6 +43,11 @@ if ( ! class_exists( 'ValidateUserGutenbergBlock' ) ) {
 
 		}
 
+		/**
+		 * Registers the Gutenberg block type, with all the callback functions it uses
+		 *
+		 * @return void
+		 */
 		public function registerBlock(): void {
 
 			// automatically load dependencies and version
@@ -66,6 +76,11 @@ if ( ! class_exists( 'ValidateUserGutenbergBlock' ) ) {
 
 		}
 
+		/**
+		 * Uses the form template file to display the form markup
+		 *
+		 * @return string The form markup
+		 */
 		public function blockHTML(): string {
 
 			ob_start();

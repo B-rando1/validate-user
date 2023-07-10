@@ -8,6 +8,7 @@ if ( ! class_exists( 'ValidateUserClassicWidget' ) ) {
 
 	class ValidateUserClassicWidget extends WP_Widget {
 
+
 		public function __construct(  ) {
 
 			$widget_ops = [
@@ -17,7 +18,15 @@ if ( ! class_exists( 'ValidateUserClassicWidget' ) ) {
 
 		}
 
-		public function widget( $args, $instance ) {
+		/**
+		 * The main display function for the widget
+		 *
+		 * @param $args
+		 * @param $instance
+		 *
+		 * @return void
+		 */
+		public function widget( $args, $instance ): void {
 
 			echo $args['before_widget'];
 

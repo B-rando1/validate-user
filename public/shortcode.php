@@ -30,6 +30,11 @@ if ( ! class_exists( 'ValidateUserShortCode' ) ) {
 
 		}
 
+		/**
+		 * Sets up the hooks for the shortcode functionality
+		 *
+		 * @return void
+		 */
 		public static function setup(): void {
 
 			$instance = self::getInstance();
@@ -38,6 +43,11 @@ if ( ! class_exists( 'ValidateUserShortCode' ) ) {
 
 		}
 
+		/**
+		 * Uses the form template file to display the form markup
+		 *
+		 * @return string The form markup
+		 */
 		public function formHTML(): string {
 
 			ob_start();

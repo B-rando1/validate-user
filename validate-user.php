@@ -48,7 +48,7 @@ if ( ! class_exists( 'ValidateUser' ) ) {
 		}
 
 		/**
-		 * Sets up all the main plugin content
+		 * Includes the main plugin files and enqueues global js and css
 		 *
 		 * @return void
 		 */
@@ -107,7 +107,7 @@ if ( ! class_exists( 'ValidateUser' ) ) {
 		/**
 		 * Adds an async attribute to any scripts with #asyncload at the end
 		 *
-		 * @param string $url the script url that is being added
+		 * @param string $url The script url that is being added
 		 *
 		 * @return string
 		 */
@@ -126,4 +126,5 @@ if ( ! class_exists( 'ValidateUser' ) ) {
 	}
 
 }
+
 ValidateUser::setup();

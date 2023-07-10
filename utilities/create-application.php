@@ -10,10 +10,18 @@ if ( ! class_exists( 'ValidateUserCreateApplication' ) ) {
 
 		private array $data;
 
-		public function __construct( $data ) {
+		/**
+		 * @param array $data The applicant data to store in the application.
+		 */
+		public function __construct( array $data ) {
 			$this->data = $data;
 		}
-		
+
+		/**
+		 * Creates a an applicant custom post type with the applicant information given.
+		 *
+		 * @return WP_REST_Response The response type, with a message explaining it.
+		 */
 		public function create(): WP_REST_Response {
 
 			// Check for collisions with  usernames/emails in existing users/applications:
@@ -83,7 +91,15 @@ if ( ! class_exists( 'ValidateUserCreateApplication' ) ) {
 			
 		}
 
-		private function areValidCredentials( $username, $email ): bool|WP_REST_Response {
+		/**
+		 * Checks that the username and email are nonempty, and not taken already.
+		 *
+		 * @param string $username The sanitized username, taken from form data.
+		 * @param string $email the sanitized email, taken from form data.
+		 *
+		 * @return bool|WP_REST_Response True if username and email are valid, a WP_REST_Response containing more information if they are not.
+		 */
+		private function areValidCredentials( string $username, string $email ): bool|WP_REST_Response {
 
 			// Check for empty username or email
 			if ( empty( trim( $username ) ) ) {
@@ -123,6 +139,16 @@ if ( ! class_exists( 'ValidateUserCreateApplication' ) ) {
 
 		}
 
+		/**
+		 * Sends the admin an email giving a rundown of the applicant information.
+		 *
+		 * @param string $username The applicant's given username.
+		 * @param string $email The applicant's given email address.
+		 * @param string $post_id The post_id for the application post type.
+		 * @param string|null $form_message The applicant's message, if they gave one.
+		 *
+		 * @return bool Whether the email successfully sent.
+		 */
 		private function sendAdminEmail( string $username, string $email, string $post_id, string $form_message=null ): bool {
 
 			$admin_email = get_bloginfo( 'admin_email' );
