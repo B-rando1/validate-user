@@ -57,8 +57,9 @@ if ( ! class_exists( 'ValidateUserDefaultFormHandler' ) ) {
 					'jquery',
 					'wp-i18n'
 				] );
-				wp_set_script_translations( 'validate_user_handle_enquiry', 'validate-user' );
-				wp_localize_script( 'validate_user_handle_enquiry', 'testAjax', ['ajaxurl' => get_rest_url( null, 'v1/validate-user/submit' )] );
+				wp_localize_script( 'validate_user_handle_enquiry', 'validate_user_enquiry_args', [
+					'ajaxurl' => get_rest_url( null, 'v1/validate-user/submit' )
+				] );
 				wp_enqueue_script( 'validate_user_handle_enquiry' );
 
 			}

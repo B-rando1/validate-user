@@ -1,4 +1,6 @@
-const { __ } = wp.i18n;
+/**
+ * @var validate_user_application_args
+ */
 
 jQuery( document ).ready( function ( $ ) {
 
@@ -12,7 +14,7 @@ jQuery( document ).ready( function ( $ ) {
         $.ajax( {
             type     : "post",
             dataType : "json",
-            url      : testAjax.ajaxurl,
+            url      : validate_user_application_args.ajaxurl,
             data     : {
                 action  : "validate_user_action",
                 post_id : post_id,
@@ -30,7 +32,7 @@ jQuery( document ).ready( function ( $ ) {
                 }
             },
             error    : function () {
-                $( '#error-messages' ).html( __( 'Ajax Error', 'validate-user' ) );
+                $( '#error-messages' ).html( validate_user_application_args.ajax_error_message );
             },
         } );
 
@@ -65,7 +67,7 @@ jQuery( document ).ready( function ( $ ) {
 
             },
             error    : function () {
-                $( '#error-messages' ).html( __( 'Ajax Error', 'validate-user' ) );
+                $( '#error-messages' ).html( validate_user_application_args.ajax_error_message );
             },
         } );
 

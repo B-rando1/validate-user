@@ -74,8 +74,10 @@ if ( ! class_exists( 'ValidateUserApplications' ) ) {
 					'jquery',
 					'wp-i18n'
 				] );
-				wp_set_script_translations( 'validate_reject_script', 'validate-user' );
-				wp_localize_script( 'validate_reject_script', 'testAjax', ['ajaxurl' => admin_url( 'admin-ajax.php' )] );
+				wp_localize_script( 'validate_reject_script', 'validate_user_application_args', [
+					'ajaxurl' => admin_url( 'admin-ajax.php' ),
+					'ajax_error_message' => esc_html__( 'Ajax Error', 'validate-user' )
+				] );
 				wp_enqueue_script( 'validate_reject_script' );
 			}
 

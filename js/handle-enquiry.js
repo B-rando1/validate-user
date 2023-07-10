@@ -1,3 +1,13 @@
+/**
+ * @var validate_user_enquiry_args
+ */
+/**
+ * @var validate_user_enquiry_args.ajaxurl
+ */
+/**
+ * @var grecaptcha
+ */
+
 jQuery( document ).ready( function ( $ ) {
 
     $( "#validate-user-form" ).submit( function ( event ) {
@@ -9,7 +19,7 @@ jQuery( document ).ready( function ( $ ) {
 
         $.ajax( {
             type    : "POST",
-            url     : testAjax.ajaxurl,
+            url     : validate_user_enquiry_args.ajaxurl,
             data    : form.serialize(),
             success : function ( response ) {
 
