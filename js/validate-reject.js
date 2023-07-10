@@ -1,74 +1,74 @@
 const { __ } = wp.i18n;
 
-jQuery(document).ready( function($) {
+jQuery( document ).ready( function ( $ ) {
 
-    $(".validate_submit").click( function(event) {
+    $( ".validate_submit" ).click( function ( event ) {
 
         event.preventDefault();
 
-        let post_id = $(this).attr("data-post_id");
-        let nonce = $(this).attr("data-nonce");
+        let post_id = $( this ).attr( "data-post_id" );
+        let nonce   = $( this ).attr( "data-nonce" );
 
-        $.ajax({
-            type : "post",
+        $.ajax( {
+            type     : "post",
             dataType : "json",
-            url : testAjax.ajaxurl,
-            data : {
-                action : "validate_user_action",
+            url      : testAjax.ajaxurl,
+            data     : {
+                action  : "validate_user_action",
                 post_id : post_id,
-                nonce : nonce
+                nonce   : nonce,
             },
-            success : function(response) {
+            success  : function ( response ) {
 
-                if (response.errors.length !== 0) {
-                    response.errors.forEach( function (error) {
-                        $('#error-messages').append(error + '<br>');
-                    });
+                if ( response.errors.length !== 0 ) {
+                    response.errors.forEach( function ( error ) {
+                        $( '#error-messages' ).append( error + '<br>' );
+                    } );
                 }
                 else {
-                    window.location.replace(response.url);
+                    window.location.replace( response.url );
                 }
             },
-            error : function() {
-                $('#error-messages').html( __( 'Ajax Error', 'validate-user' ) );
-            }
-        });
+            error    : function () {
+                $( '#error-messages' ).html( __( 'Ajax Error', 'validate-user' ) );
+            },
+        } );
 
-    });
+    } );
 
-    $(".reject_submit").click( function(event) {
+    $( ".reject_submit" ).click( function ( event ) {
 
         event.preventDefault();
 
-        let post_id = $(this).attr("data-post_id");
-        let nonce = $(this).attr("data-nonce");
+        let post_id = $( this ).attr( "data-post_id" );
+        let nonce   = $( this ).attr( "data-nonce" );
 
-        $.ajax({
-            type : "post",
+        $.ajax( {
+            type     : "post",
             dataType : 'json',
-            url : testAjax.ajaxurl,
-            data : {
-                action : "reject_user_action",
+            url      : testAjax.ajaxurl,
+            data     : {
+                action  : "reject_user_action",
                 post_id : post_id,
-                nonce : nonce
+                nonce   : nonce,
             },
-            success : function(response) {
+            success  : function ( response ) {
 
-                if (response.errors.length !== 0) {
-                    response.errors.forEach( function (error) {
-                        $('#error-messages').append(error + '<br>');
-                    });
+                if ( response.errors.length !== 0 ) {
+                    response.errors.forEach( function ( error ) {
+                        $( '#error-messages' ).append( error + '<br>' );
+                    } );
                 }
                 else {
-                    window.location.replace(response.url);
+                    window.location.replace( response.url );
                 }
 
             },
-            error : function() {
-                $('#error-messages').html( __( 'Ajax Error', 'validate-user' ) );
-            }
-        });
+            error    : function () {
+                $( '#error-messages' ).html( __( 'Ajax Error', 'validate-user' ) );
+            },
+        } );
 
-    });
+    } );
 
-});
+} );

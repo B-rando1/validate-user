@@ -1,21 +1,21 @@
 jQuery( document ).ready( function ( $ ) {
 
-    $( '.validate-user textarea' ).keydown( function( e ) {
+    $( '.validate-user textarea' ).keydown( function ( e ) {
         let $this, end, start;
         if ( e.keyCode === 9 ) {
             start = this.selectionStart;
-            end = this.selectionEnd;
+            end   = this.selectionEnd;
             $this = $( this );
             $this.val( $this.val().substring( 0, start ) + "\t" + $this.val().substring( end ) );
             this.selectionStart = this.selectionEnd = start + 1;
             return false;
         }
-    });
+    } );
 
     // Hide and display settings based on other settings
     const formTypeSelect = $( '.validate-user select[name="validate-user-form-type"]' );
-    const cf7Settings = [
-        'validate-user-cf7-form-id'
+    const cf7Settings    = [
+        'validate-user-cf7-form-id',
     ];
 
     validateUserShowFields( $, formTypeSelect.val() === 'cf7', cf7Settings );
@@ -29,14 +29,14 @@ jQuery( document ).ready( function ( $ ) {
         'validate-user-admin-email-from-address',
         'validate-user-admin-email-to-name',
         'validate-user-admin-email-to-address',
-        'validate-user-admin-email-message'
+        'validate-user-admin-email-message',
     ];
 
     validateUserShowFields( $, adminEmailCheckBox.is( ':checked' ), adminEmailSettings );
     adminEmailCheckBox.change( function () {
 
         validateUserShowFields( $, adminEmailCheckBox.is( ':checked' ), adminEmailSettings );
-        $(".validate-user .auto-resize").each(function () {
+        $( ".validate-user .auto-resize" ).each( function () {
             validateUserResize( this );
         } );
 
@@ -45,23 +45,23 @@ jQuery( document ).ready( function ( $ ) {
     const rejectionEmailCheckBox = $( '.validate-user input[name="validate-user-rejection-email-send"]' );
     const rejectionEmailSettings = [
         'validate-user-rejection-email-subject',
-        'validate-user-rejection-email-message'
+        'validate-user-rejection-email-message',
     ];
 
     validateUserShowFields( $, rejectionEmailCheckBox.is( ':checked' ), rejectionEmailSettings );
     rejectionEmailCheckBox.change( function () {
 
         validateUserShowFields( $, rejectionEmailCheckBox.is( ':checked' ), rejectionEmailSettings );
-        $(".validate-user .auto-resize").each(function () {
+        $( ".validate-user .auto-resize" ).each( function () {
             validateUserResize( this );
         } );
 
     } );
 
     const useRecaptchaCheckBox = $( '.validate-user input[name="validate-user-use-recaptcha"]' );
-    const recaptchaSettings = [
+    const recaptchaSettings    = [
         'validate-user-recaptcha-public-key',
-        'validate-user-recaptcha-secret-key'
+        'validate-user-recaptcha-secret-key',
     ];
 
     validateUserShowFields( $, useRecaptchaCheckBox.is( ':checked' ), recaptchaSettings );
@@ -69,13 +69,13 @@ jQuery( document ).ready( function ( $ ) {
         validateUserShowFields( $, useRecaptchaCheckBox.is( ':checked' ), recaptchaSettings );
     } );
 
-});
+} );
 
-function validateUserShowFields( $, show, names ) {
+function validateUserShowFields ( $, show, names ) {
 
     if ( show ) {
 
-        $( '.validate-user table.form-table tr' ).each( function() {
+        $( '.validate-user table.form-table tr' ).each( function () {
 
             if ( names.includes( $( this ).find( 'input, textarea, select' ).attr( 'name' ) ) ) {
                 $( this ).fadeIn();
@@ -86,7 +86,7 @@ function validateUserShowFields( $, show, names ) {
     }
     else {
 
-        $( '.validate-user table.form-table tr' ).each( function() {
+        $( '.validate-user table.form-table tr' ).each( function () {
 
             if ( names.includes( $( this ).find( 'input, textarea, select' ).attr( 'name' ) ) ) {
                 $( this ).fadeOut();

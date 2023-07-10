@@ -39,8 +39,8 @@ if ( ! class_exists( 'ValidateUserDefaultFormHandler' ) ) {
 
 			$instance = self::getInstance();
 
-			add_action( 'wp_enqueue_scripts', [ $instance, 'enqueueScripts' ] );
-			add_action( 'rest_api_init', [ $instance, 'createRestEndpoint' ] );
+			add_action( 'wp_enqueue_scripts', [$instance, 'enqueueScripts'] );
+			add_action( 'rest_api_init', [$instance, 'createRestEndpoint'] );
 
 		}
 
@@ -58,7 +58,7 @@ if ( ! class_exists( 'ValidateUserDefaultFormHandler' ) ) {
 					'wp-i18n'
 				] );
 				wp_set_script_translations( 'validate_user_handle_enquiry', 'validate-user' );
-				wp_localize_script( 'validate_user_handle_enquiry', 'testAjax', [ 'ajaxurl' => get_rest_url( null, 'v1/validate-user/submit' ) ] );
+				wp_localize_script( 'validate_user_handle_enquiry', 'testAjax', ['ajaxurl' => get_rest_url( null, 'v1/validate-user/submit' )] );
 				wp_enqueue_script( 'validate_user_handle_enquiry' );
 
 			}
@@ -76,7 +76,7 @@ if ( ! class_exists( 'ValidateUserDefaultFormHandler' ) ) {
 
 				register_rest_route( 'v1/validate-user', 'submit', [
 					'methods'  => 'POST',
-					'callback' => [ $this, 'handleEnquiry' ]
+					'callback' => [$this, 'handleEnquiry']
 				] );
 
 			}
@@ -126,6 +126,7 @@ if ( ! class_exists( 'ValidateUserDefaultFormHandler' ) ) {
 
 			require_once( VALIDATE_USER_PATH . 'utilities/create-application.php' );
 			$newApplication = new ValidateUserCreateApplication( $params );
+
 			return $newApplication->create();
 
 		}

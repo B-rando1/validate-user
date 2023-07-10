@@ -39,7 +39,7 @@ if ( ! class_exists( 'ValidateUserShortCode' ) ) {
 
 			$instance = self::getInstance();
 
-			add_shortcode( 'validate_user_form', [ $instance, 'formHTML' ] );
+			add_shortcode( 'validate_user_form', [$instance, 'formHTML'] );
 
 		}
 

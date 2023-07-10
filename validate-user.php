@@ -84,9 +84,9 @@ if ( ! class_exists( 'ValidateUser' ) ) {
 			ValidateUserUserEditor::setup();
 			ValidateUserSettings::setup();
 
-			add_action( 'admin_enqueue_scripts', [ $instance, 'enqueueGlobalScripts' ] );
-			add_action( 'wp_enqueue_scripts', [ $instance, 'enqueueGlobalScripts' ] );
-			add_filter( 'clean_url', [ $instance, 'addAsyncToScript' ], 11, 1 );
+			add_action( 'admin_enqueue_scripts', [$instance, 'enqueueGlobalScripts'] );
+			add_action( 'wp_enqueue_scripts', [$instance, 'enqueueGlobalScripts'] );
+			add_filter( 'clean_url', [$instance, 'addAsyncToScript'], 11, 1 );
 		}
 
 		/**
@@ -99,7 +99,7 @@ if ( ! class_exists( 'ValidateUser' ) ) {
 			wp_register_style( 'validate_user_shortcode_css', VALIDATE_USER_URL . '/css/style.css' );
 			wp_enqueue_style( 'validate_user_shortcode_css' );
 
-			wp_register_script( 'validate_user_global_script', VALIDATE_USER_URL . '/js/global.js', [ 'jquery' ] );
+			wp_register_script( 'validate_user_global_script', VALIDATE_USER_URL . '/js/global.js', ['jquery'] );
 			wp_enqueue_script( 'validate_user_global_script' );
 
 		}
@@ -117,9 +117,10 @@ if ( ! class_exists( 'ValidateUser' ) ) {
 				return $url;
 			}
 			if ( is_admin() ) {
-				return str_replace( '#asyncload', '', $url);
+				return str_replace( '#asyncload', '', $url );
 			}
-			return str_replace( '#asyncload', '', $url) . "' async='async";
+
+			return str_replace( '#asyncload', '', $url ) . "' async='async";
 
 		}
 

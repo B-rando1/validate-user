@@ -32,9 +32,9 @@ foreach ( $options as $option ) {
 
 // Delete Applications Post Type
 $application_ids = get_posts( [
-	'fields' => 'ids',
-	'numberposts' => -1,
-	'post_type' => 'validate-apps'
+	'fields'      => 'ids',
+	'numberposts' => - 1,
+	'post_type'   => 'validate-apps'
 ] );
 
 foreach ( $application_ids as $id ) {
@@ -49,7 +49,7 @@ foreach ( $users as $user ) {
 	foreach ( $user_meta as $key => $value ) {
 
 		if ( str_starts_with( $key, 'validate-user-' ) ) {
-			delete_user_meta( $user->ID, $key);
+			delete_user_meta( $user->ID, $key );
 		}
 
 	}

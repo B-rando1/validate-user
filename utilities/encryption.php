@@ -12,7 +12,7 @@ if ( ! class_exists( 'ValidateUserEncryption' ) ) {
 		private string $salt;
 
 		public function __construct() {
-			$this->key = $this->getDefaultKey();
+			$this->key  = $this->getDefaultKey();
 			$this->salt = $this->getDefaultSalt();
 		}
 
@@ -30,8 +30,8 @@ if ( ! class_exists( 'ValidateUserEncryption' ) ) {
 			}
 
 			$method = 'aes-256-xts';
-			$ivlen = openssl_cipher_iv_length( $method );
-			$iv = openssl_random_pseudo_bytes( $ivlen );
+			$ivlen  = openssl_cipher_iv_length( $method );
+			$iv     = openssl_random_pseudo_bytes( $ivlen );
 
 			$raw_value = openssl_encrypt( $value . $this->salt, $method, $this->key, 0, $iv );
 			if ( ! $raw_value ) {
@@ -58,9 +58,9 @@ if ( ! class_exists( 'ValidateUserEncryption' ) ) {
 			$raw_value = base64_decode( $raw_value, true ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
 
 			$method = 'aes-256-xts';
-			$ivlen = openssl_cipher_iv_length( $method );
+			$ivlen  = openssl_cipher_iv_length( $method );
 
-			$iv = substr( $raw_value, 0, $ivlen );
+			$iv        = substr( $raw_value, 0, $ivlen );
 			$raw_value = substr( $raw_value, $ivlen );
 
 			$value = openssl_decrypt( $raw_value, $method, $this->key, 0, $iv );

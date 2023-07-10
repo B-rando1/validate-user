@@ -1,7 +1,7 @@
 <?php
 
 if ( ! defined( 'ABSPATH' ) ) {
-    die( esc_html__( 'Access Denied', 'validate-user' ) );
+	die( esc_html__( 'Access Denied', 'validate-user' ) );
 }
 
 if ( ! class_exists( 'ValidateUserEditor' ) ) {
@@ -39,11 +39,11 @@ if ( ! class_exists( 'ValidateUserEditor' ) ) {
 
 			$instance = self::getInstance();
 
-			add_action( 'show_user_profile', [ $instance, 'displayUserMeta' ] );
-			add_action( 'edit_user_profile', [ $instance, 'displayUserMeta' ] );
+			add_action( 'show_user_profile', [$instance, 'displayUserMeta'] );
+			add_action( 'edit_user_profile', [$instance, 'displayUserMeta'] );
 
-			add_action( 'personal_options_update', [ $instance, 'saveUserMeta' ] );
-			add_action( 'edit_user_profile_update', [ $instance, 'saveUserMeta' ] );
+			add_action( 'personal_options_update', [$instance, 'saveUserMeta'] );
+			add_action( 'edit_user_profile_update', [$instance, 'saveUserMeta'] );
 
 		}
 

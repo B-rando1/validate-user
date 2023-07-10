@@ -6,34 +6,40 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /** @var $id string */
 $post_meta = get_post_meta( $id );
-$username = $post_meta['username'][0];
+$username  = $post_meta['username'][0];
 unset( $post_meta['username'] );
 $email = $post_meta['email'][0];
 unset( $post_meta['email'] );
 
 if ( isset ( $post_meta['message'] ) ) {
-    $message = $post_meta['message'][0];
-    unset( $post_meta['message'] );
+	$message = $post_meta['message'][0];
+	unset( $post_meta['message'] );
 }
 if ( isset( $post_meta['_edit_lock'] ) ) {
-    unset( $post_meta['_edit_lock'] );
+	unset( $post_meta['_edit_lock'] );
 }
 
 ?>
 
-<div class="validate-user">
-    <ul>
-        <li><strong><?php esc_html_e( 'Username:', 'validate-user' ); ?></strong> <?php echo esc_html( $username ); ?></li>
-        <li><strong><?php esc_html_e( 'Email:', 'validate-user' ); ?></strong> <?php echo esc_html( $email ); ?></li>
-        <?php if ( isset( $message ) ) { ?>
-            <li class="message"><strong><?php esc_html_e( 'Message:', 'validate-user' ); ?></strong><br><div><?php echo wp_kses( $message, ['br' => []] ); ?></div></li>
-        <?php }
-        foreach ( $post_meta as $key => $value ) { ?>
-            <li><strong><?php echo esc_html( ucfirst( $key ) ); ?></strong> <?php echo esc_html( $value[0] ); ?></li>
-        <?php } ?>
-    </ul>
-    <p id="error-messages" class="error"></p>
-</div>
+    <div class="validate-user">
+        <ul>
+            <li>
+                <strong><?php esc_html_e( 'Username:', 'validate-user' ); ?></strong> <?php echo esc_html( $username ); ?>
+            </li>
+            <li><strong><?php esc_html_e( 'Email:', 'validate-user' ); ?></strong> <?php echo esc_html( $email ); ?>
+            </li>
+			<?php if ( isset( $message ) ) { ?>
+                <li class="message"><strong><?php esc_html_e( 'Message:', 'validate-user' ); ?></strong><br>
+                    <div><?php echo wp_kses( $message, ['br' => []] ); ?></div>
+                </li>
+			<?php }
+			foreach ( $post_meta as $key => $value ) { ?>
+                <li><strong><?php echo esc_html( ucfirst( $key ) ); ?></strong> <?php echo esc_html( $value[0] ); ?>
+                </li>
+			<?php } ?>
+        </ul>
+        <p id="error-messages" class="error"></p>
+    </div>
 
 <?php
 

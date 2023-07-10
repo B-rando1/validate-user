@@ -9,7 +9,7 @@ if ( ! class_exists( 'ValidateUserClassicWidget' ) ) {
 	class ValidateUserClassicWidget extends WP_Widget {
 
 
-		public function __construct(  ) {
+		public function __construct() {
 
 			$widget_ops = [
 				'classname' => 'validate-user-classic-widget'

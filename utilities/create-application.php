@@ -51,10 +51,10 @@ if ( ! class_exists( 'ValidateUserCreateApplication' ) ) {
 			unset( $this->data['email'] );
 			add_post_meta( $new_post, 'email', $email );
 
-			if ( isset( $this->data['message']) ) {
+			if ( isset( $this->data['message'] ) ) {
 				if ( ! empty( trim( $this->data['message'] ) ) ) {
 
-					$form_message = wp_kses( nl2br( $this->data['message'] ), [ 'br' => [] ] );
+					$form_message = wp_kses( nl2br( $this->data['message'] ), ['br' => []] );
 					add_post_meta( $new_post, 'message', $form_message );
 
 				}
@@ -88,7 +88,7 @@ if ( ! class_exists( 'ValidateUserCreateApplication' ) ) {
 
 			// Send a success message
 			return new WP_REST_Response( esc_html__( 'Your request has been successfully sent', 'validate-user' ), 200 );
-			
+
 		}
 
 		/**
@@ -118,11 +118,11 @@ if ( ! class_exists( 'ValidateUserCreateApplication' ) ) {
 			}
 
 			// Check for collisions with existing applications:
-			$application_ids = get_posts([
-				'fields' => 'ids',
-				'numberposts' => -1,
-				'post_type' => 'validate-apps'
-			]);
+			$application_ids = get_posts( [
+				'fields'      => 'ids',
+				'numberposts' => - 1,
+				'post_type'   => 'validate-apps'
+			] );
 
 			foreach ( $application_ids as $id ) {
 
@@ -149,7 +149,7 @@ if ( ! class_exists( 'ValidateUserCreateApplication' ) ) {
 		 *
 		 * @return bool Whether the email successfully sent.
 		 */
-		private function sendAdminEmail( string $username, string $email, string $post_id, string $form_message=null ): bool {
+		private function sendAdminEmail( string $username, string $email, string $post_id, string $form_message = null ): bool {
 
 			$admin_email = get_bloginfo( 'admin_email' );
 			$admin_name  = get_bloginfo( 'name' );
@@ -177,7 +177,7 @@ if ( ! class_exists( 'ValidateUserCreateApplication' ) ) {
 				'{username}'         => esc_html( $username ),
 				'{email}'            => esc_html( $email ),
 				'{application_link}' => $application_link,
-				'{other-info}'           => ValidateUserEmailUtilities::formatArray( $this->data )
+				'{other-info}'       => ValidateUserEmailUtilities::formatArray( $this->data )
 			];
 			if ( null !== $form_message ) {
 				$macros['{message}'] = $form_message;
@@ -206,7 +206,7 @@ if ( ! class_exists( 'ValidateUserCreateApplication' ) ) {
 				$macros
 			);
 
-			$message  = apply_filters( 'validate-user-admin-message', $message, $post_id );
+			$message = apply_filters( 'validate-user-admin-message', $message, $post_id );
 
 			return wp_mail( $to_email, $subject, $message, $headers );
 

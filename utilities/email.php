@@ -13,11 +13,11 @@ if ( ! class_exists( 'ValidateUserEmailUtilities' ) ) {
 		 */
 		#[ArrayShape( [
 			'{from_name}'    => "string",
-            '{from_address}' => "string",
-            '{to_name}'      => "string",
-            '{to_address}'   => "string",
+			'{from_address}' => "string",
+			'{to_name}'      => "string",
+			'{to_address}'   => "string",
 			'{site_name}'    => "string",
-            '{site_url}'     => "string"
+			'{site_url}'     => "string"
 		] )] public static function getAdminMacros(): array {
 
 			return [
@@ -60,9 +60,9 @@ if ( ! class_exists( 'ValidateUserEmailUtilities' ) ) {
 		 */
 		#[ArrayShape( [
 			'{from_name}'    => "string",
-            '{from_address}' => "string",
-            '{site_name}'    => "string",
-            '{site_url}'     => "string"
+			'{from_address}' => "string",
+			'{site_name}'    => "string",
+			'{site_url}'     => "string"
 		] )] public static function getClientMacros(): array {
 
 			return [

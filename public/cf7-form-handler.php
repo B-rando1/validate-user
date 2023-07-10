@@ -41,8 +41,8 @@ if ( ! class_exists( 'ValidateUserCF7FormHandler' ) ) {
 
 			$instance = self::getInstance();
 
-			add_action( 'wpcf7_skip_mail', [ $instance, 'cf7SkipMail' ], 10, 2 );
-			add_action( 'wpcf7_before_send_mail', [ $instance, 'cf7GetData' ], 10, 3 );
+			add_action( 'wpcf7_skip_mail', [$instance, 'cf7SkipMail'], 10, 2 );
+			add_action( 'wpcf7_before_send_mail', [$instance, 'cf7GetData'], 10, 3 );
 
 		}
 
@@ -81,7 +81,7 @@ if ( ! class_exists( 'ValidateUserCF7FormHandler' ) ) {
 
 			require_once( VALIDATE_USER_PATH . 'utilities/create-application.php' );
 			$newApplication = new ValidateUserCreateApplication( $submission->get_posted_data() );
-			$response = $newApplication->create();
+			$response       = $newApplication->create();
 
 			if ( $response->is_error() ) {
 				$abort = true;
@@ -89,7 +89,7 @@ if ( ! class_exists( 'ValidateUserCF7FormHandler' ) ) {
 
 			// Handle response and send it back to cf7
 			$this->cf7StatusMessage = $response->data;
-			add_filter( 'wpcf7_display_message', [ $this, 'cf7DisplayMessage' ] );
+			add_filter( 'wpcf7_display_message', [$this, 'cf7DisplayMessage'] );
 
 			return $contactForm;
 
@@ -111,7 +111,7 @@ if ( ! class_exists( 'ValidateUserCF7FormHandler' ) ) {
 
 			}
 
-			remove_filter( 'wpcf7_display_message', [ $this, 'cf7DisplayMessage' ] );
+			remove_filter( 'wpcf7_display_message', [$this, 'cf7DisplayMessage'] );
 
 			return $message;
 

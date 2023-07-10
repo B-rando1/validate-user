@@ -70,8 +70,8 @@ if ( ! class_exists( 'ValidateUserGutenbergBlock' ) ) {
 			}
 
 			register_block_type( 'validate-user/gutenberg-block', [
-				'editor_script' => $script_handle,
-				'render_callback' => [ $this, 'blockHTML' ]
+				'editor_script'   => $script_handle,
+				'render_callback' => [$this, 'blockHTML']
 			] );
 
 		}
@@ -85,6 +85,7 @@ if ( ! class_exists( 'ValidateUserGutenbergBlock' ) ) {
 
 			ob_start();
 			include( VALIDATE_USER_PATH . 'templates/application-form.php' );
+
 			return ob_get_clean();
 
 		}

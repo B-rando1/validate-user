@@ -40,21 +40,21 @@ if ( ! class_exists( 'ValidateUserApplications' ) ) {
 
 			$instance = self::getInstance();
 
-			add_action( 'admin_enqueue_scripts', [ $instance, 'enqueueScripts' ] );
+			add_action( 'admin_enqueue_scripts', [$instance, 'enqueueScripts'] );
 
-			add_action( 'init', [ $instance, 'registerCustomPostType' ] );
-			add_action( 'admin_head', [ $instance, 'applicationsActive' ] );
+			add_action( 'init', [$instance, 'registerCustomPostType'] );
+			add_action( 'admin_head', [$instance, 'applicationsActive'] );
 
-			add_action( 'after_setup_theme', [ $instance, 'addRole' ] );
+			add_action( 'after_setup_theme', [$instance, 'addRole'] );
 
-			add_action( 'add_meta_boxes', [ $instance, 'createMetaBox' ] );
-			add_action( 'wp_ajax_validate_user_action', [ $instance, 'createValidUser' ] );
-			add_action( 'wp_ajax_reject_user_action', [ $instance, 'rejectUser' ] );
-			add_action( 'admin_menu', [ $instance, 'hidePublishBox' ] );
+			add_action( 'add_meta_boxes', [$instance, 'createMetaBox'] );
+			add_action( 'wp_ajax_validate_user_action', [$instance, 'createValidUser'] );
+			add_action( 'wp_ajax_reject_user_action', [$instance, 'rejectUser'] );
+			add_action( 'admin_menu', [$instance, 'hidePublishBox'] );
 
-			add_filter( 'manage_validate-apps_posts_columns', [ $instance, 'applicationsColumns' ] );
-			add_action( 'manage_validate-apps_posts_custom_column', [ $instance, 'fillApplicationsColumn' ], 10, 2 );
-			add_filter( 'post_row_actions', [ $instance, 'rowActions' ], 10, 2 );
+			add_filter( 'manage_validate-apps_posts_columns', [$instance, 'applicationsColumns'] );
+			add_action( 'manage_validate-apps_posts_custom_column', [$instance, 'fillApplicationsColumn'], 10, 2 );
+			add_filter( 'post_row_actions', [$instance, 'rowActions'], 10, 2 );
 
 		}
 
@@ -75,7 +75,7 @@ if ( ! class_exists( 'ValidateUserApplications' ) ) {
 					'wp-i18n'
 				] );
 				wp_set_script_translations( 'validate_reject_script', 'validate-user' );
-				wp_localize_script( 'validate_reject_script', 'testAjax', [ 'ajaxurl' => admin_url( 'admin-ajax.php' ) ] );
+				wp_localize_script( 'validate_reject_script', 'testAjax', ['ajaxurl' => admin_url( 'admin-ajax.php' )] );
 				wp_enqueue_script( 'validate_reject_script' );
 			}
 
@@ -103,7 +103,7 @@ if ( ! class_exists( 'ValidateUserApplications' ) ) {
 					],
 					'supports'           => false,
 					'capability_type'    => 'post',
-					'capabilities'       => [ 'create_posts' => false ],
+					'capabilities'       => ['create_posts' => false],
 					'map_meta_cap'       => true,
 					'show_in_menu'       => false
 				]
@@ -216,8 +216,8 @@ if ( ! class_exists( 'ValidateUserApplications' ) ) {
 				$from_name  = get_option( 'validate-user-client-email-from-name', get_bloginfo( 'name' ) );
 				$from_email = get_option( 'validate-user-client-email-from-address', get_bloginfo( 'admin_email' ) );
 
-				$reset_password_key = get_password_reset_key( $user_obj );
-				$user_login = $user_obj->user_login;
+				$reset_password_key  = get_password_reset_key( $user_obj );
+				$user_login          = $user_obj->user_login;
 				$reset_password_link = network_site_url( "wp-login.php?action=rp&key=$reset_password_key&login=" . rawurldecode( $user_login ), 'login' );
 
 				$headers   = [];
@@ -232,13 +232,13 @@ if ( ! class_exists( 'ValidateUserApplications' ) ) {
 				$message = get_option( 'validate-user-confirmation-email-message', ValidateUserEmailTemplates::confirmationEmailTemplate() );
 
 				$macros = [
-					'{username}' => esc_html( $username ),
-					'{email}'    => esc_html( $email ),
+					'{username}'          => esc_html( $username ),
+					'{email}'             => esc_html( $email ),
 					'{set_password_link}' => $reset_password_link,
-					'{other-info}' => ValidateUserEmailUtilities::formatArray( $post_meta )
+					'{other-info}'        => ValidateUserEmailUtilities::formatArray( $post_meta )
 				];
-				foreach( $post_meta as $key => $value ) {
-					$macro_key = esc_html( $key );
+				foreach ( $post_meta as $key => $value ) {
+					$macro_key                = esc_html( $key );
 					$macros["{{$macro_key}}"] = esc_html( $value[0] );
 				}
 
@@ -253,6 +253,8 @@ if ( ! class_exists( 'ValidateUserApplications' ) ) {
 				}
 
 			}
+
+			do_action( 'validate-user-confirm-user', $user_id, $response['errors'] );
 
 			if ( empty( $response['errors'] ) ) {
 
@@ -280,7 +282,7 @@ if ( ! class_exists( 'ValidateUserApplications' ) ) {
 
 			check_ajax_referer( 'validate_user_nonce', 'nonce' );
 
-			$response = [];
+			$response           = [];
 			$response['errors'] = [];
 
 			$post_id = $_REQUEST['post_id'];
@@ -289,7 +291,7 @@ if ( ! class_exists( 'ValidateUserApplications' ) ) {
 			if ( '1' === get_option( 'validate-user-rejection-email-send', '0' ) ) {
 
 				$post_meta = get_post_meta( $post_id );
-				$username = $post_meta['username'][0];
+				$username  = $post_meta['username'][0];
 				unset( $post_meta['username'] );
 				$email = $post_meta['email'][0];
 				unset( $post_meta['email'] );
@@ -316,12 +318,12 @@ if ( ! class_exists( 'ValidateUserApplications' ) ) {
 				$message = get_option( 'validate-user-rejection-email-message', ValidateUserEmailTemplates::rejectionEmailTemplate() );
 
 				$macros = [
-					'{username}' => esc_html( $username ),
-					'{email}'    => esc_html( $email ),
+					'{username}'   => esc_html( $username ),
+					'{email}'      => esc_html( $email ),
 					'{other-info}' => ValidateUserEmailUtilities::formatArray( $post_meta )
 				];
-				foreach( $post_meta as $key => $value ) {
-					$macro_key = esc_html( $key );
+				foreach ( $post_meta as $key => $value ) {
+					$macro_key                = esc_html( $key );
 					$macros["{{$macro_key}}"] = esc_html( $value[0] );
 				}
 
@@ -337,6 +339,8 @@ if ( ! class_exists( 'ValidateUserApplications' ) ) {
 
 			}
 
+			do_action( 'validate-user-reject-user', $post_id, $response['errors'] );
+
 			if ( empty( $response['errors'] ) ) {
 
 				// Delete the request and redirect to Validate User Applications page
@@ -345,7 +349,7 @@ if ( ! class_exists( 'ValidateUserApplications' ) ) {
 
 			}
 
-			echo json_encode ( $response );
+			echo json_encode( $response );
 
 			die();
 
@@ -370,9 +374,9 @@ if ( ! class_exists( 'ValidateUserApplications' ) ) {
 		 * @return array The updated columns to be displayed.
 		 */
 		#[ArrayShape( [
-			'cb' => "mixed",
+			'cb'       => "mixed",
 			'username' => "string",
-			'email' => "string"
+			'email'    => "string"
 		] )] public function applicationsColumns( array $columns ): array {
 
 			return [
