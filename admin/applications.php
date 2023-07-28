@@ -17,9 +17,9 @@ if ( ! class_exists( 'ValidateUserApplications' ) ) {
 		}
 
 		/**
-		 * Gets the singleton instance
+		 * Gets the singleton instance.
 		 *
-		 * @return ValidateUserApplications The singleton instance
+		 * @return ValidateUserApplications The singleton instance.
 		 */
 		public static function getInstance(): ValidateUserApplications {
 

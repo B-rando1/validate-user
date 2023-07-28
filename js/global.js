@@ -10,6 +10,12 @@ jQuery( document ).ready( function ( $ ) {
     } );
 } );
 
+/**
+ * Resizes an element to fit its content.
+ *
+ * @param element The jQuery element.
+ * @type {(element: jQuery) => void}
+ */
 function validateUserResize ( element ) {
 
     element.style.height = "auto";

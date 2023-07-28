@@ -15,7 +15,6 @@ jQuery( document ).ready( function ( $ ) {
         event.preventDefault();
 
         let form = $( this );
-        console.log( form.serialize() );
 
         $.ajax( {
             type    : "POST",

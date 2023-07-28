@@ -109,7 +109,7 @@ if ( ! class_exists( 'ValidateUser' ) ) {
 		 *
 		 * @param string $url The script url that is being added
 		 *
-		 * @return string
+		 * @return string The updated url
 		 */
 		public function addAsyncToScript( string $url ): string {
 
